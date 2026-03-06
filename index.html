@@ -350,22 +350,22 @@
         const SUPABASE_URL = 'https://zwubscpykgprkrnwukdc.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3dWJzY3B5a2dwcmtybnd1a2RjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTEzODIsImV4cCI6MjA4ODM2NzM4Mn0.4zsMugqI-kveF7eMqLVgbLhGe-tLOlhqWfR2dtYQipU';
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        // CORREZIONE ERRORE: Variabile chiamata clientSupabase per non creare conflitti
+        const clientSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let mockDisponibilita = {}; // Salveremo qui i dati scaricati dal db per comodità
+        let mockDisponibilita = {}; 
 
-        // Caricamento Iniziale dei dati quando si apre il sito
+        // Caricamento Iniziale
         window.onload = function() {
             caricaDatiSupabase();
         };
 
         async function caricaDatiSupabase() {
-            // 1. Scarica il calendario (Disponibilità)
-            const { data: calData, error: calError } = await supabase.from('disponibilita').select('*').order('data_giorno', { ascending: true });
+            // 1. Scarica il calendario
+            const { data: calData, error: calError } = await clientSupabase.from('disponibilita').select('*').order('data_giorno', { ascending: true });
             if (!calError && calData) {
-                mockDisponibilita = {}; // Resetta
+                mockDisponibilita = {};
                 calData.forEach(item => {
-                    // Crea un array dividendo la stringa testuale degli orari
                     mockDisponibilita[item.data_giorno] = item.orari.split(',').map(o => o.trim());
                 });
                 caricaDateMenuPaziente();
@@ -373,7 +373,7 @@
             }
 
             // 2. Scarica le Prenotazioni per l'area Admin
-            const { data: prenData, error: prenError } = await supabase.from('prenotazioni').select('*').order('created_at', { ascending: false });
+            const { data: prenData, error: prenError } = await clientSupabase.from('prenotazioni').select('*').order('created_at', { ascending: false });
             if (!prenError && prenData) {
                 renderizzaPrenotazioniAdmin(prenData);
             }
@@ -416,7 +416,6 @@
                 return;
             }
 
-            // Filtra solo date future o di oggi
             let oggi = new Date().toISOString().split('T')[0];
 
             for (let data in mockDisponibilita) {
@@ -464,8 +463,7 @@
             btn.disabled = true;
             btn.innerText = "Invio in corso...";
 
-            // Salva su Supabase
-            const { error } = await supabase.from('prenotazioni').insert([{
+            const { error } = await clientSupabase.from('prenotazioni').insert([{
                 nome: nome,
                 telefono: tel,
                 servizio: motivo,
@@ -475,11 +473,10 @@
             }]);
 
             if (error) {
-                alert("❌ Errore durante l'invio. Verifica che le tabelle su Supabase siano state create correttamente.");
+                alert("❌ Errore durante l'invio. Verifica le tabelle su Supabase.");
                 console.error(error);
             } else {
                 alert(`✅ Richiesta inviata con successo!\n\nGrazie ${nome}, la Dott.ssa Canossa ti ricontatterà al più presto per confermare l'appuntamento.`);
-                // Reset form
                 document.getElementById('paz-nome').value = '';
                 document.getElementById('paz-tel').value = '';
                 document.getElementById('paz-motivo').value = '';
@@ -490,7 +487,7 @@
 
             btn.disabled = false;
             btn.innerText = "Invia Richiesta Prenotazione";
-            caricaDatiSupabase(); // Ricarica in background
+            caricaDatiSupabase();
         };
 
         // ==========================================
@@ -524,11 +521,9 @@
 
             if(!dataInput || !orariInput) return alert("⚠️ Inserisci la data e almeno un orario!");
 
-            // Pulizia testo (rimuove spazi inutili)
             let orariPuliti = orariInput.split(',').map(o => o.trim()).filter(o => o !== "").join(', ');
 
-            // Salva su Supabase (Upsert: se la data esiste, sovrascrive)
-            const { error } = await supabase.from('disponibilita').upsert({
+            const { error } = await clientSupabase.from('disponibilita').upsert({
                 data_giorno: dataInput,
                 orari: orariPuliti
             }, { onConflict: 'data_giorno' });
@@ -546,19 +541,19 @@
 
         window.eliminaGiornoAdmin = async function(dataKey) {
             if(confirm("Vuoi eliminare tutte le disponibilità per questo giorno?")) {
-                await supabase.from('disponibilita').delete().eq('data_giorno', dataKey);
+                await clientSupabase.from('disponibilita').delete().eq('data_giorno', dataKey);
                 caricaDatiSupabase();
             }
         };
 
         window.segnaCompletata = async function(id) {
-            await supabase.from('prenotazioni').update({ stato: 'Gestita' }).eq('id', id);
+            await clientSupabase.from('prenotazioni').update({ stato: 'Gestita' }).eq('id', id);
             caricaDatiSupabase();
         };
 
         window.eliminaPrenotazione = async function(id) {
             if(confirm("Sei sicuro di voler eliminare definitivamente questa prenotazione?")) {
-                await supabase.from('prenotazioni').delete().eq('id', id);
+                await clientSupabase.from('prenotazioni').delete().eq('id', id);
                 caricaDatiSupabase();
             }
         };
@@ -578,7 +573,6 @@
                 let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
                 let orari = mockDisponibilita[data].join(' | ');
                 
-                // Colora di rosso le date passate
                 let colorText = (data < oggi) ? "color: #e74c3c; text-decoration: line-through;" : "color: var(--terracotta);";
 
                 let div = document.createElement('div');
@@ -605,7 +599,7 @@
 
             prenotazioni.forEach(p => {
                 let parts = p.data_prenotazione.split('-');
-                let dataIta = `${parts[2]}/${parts[1]}`; // Giorno/Mese
+                let dataIta = `${parts[2]}/${parts[1]}`; 
                 
                 let isNew = p.stato === 'Nuova';
                 let badgeClass = isNew ? 'st-new' : 'st-done';
