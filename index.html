@@ -112,14 +112,22 @@
         .service-box {
             background: var(--card-bg); border: 2px solid var(--border-light); padding: 25px; 
             border-radius: var(--radius-md); transition: 0.3s; position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
         }
         .service-box:hover { border-color: var(--terracotta); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .service-box h3 { font-size: 18px; margin: 0 0 10px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;}
-        .service-box .s-tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px;}
+        .service-box .s-tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px; width: max-content;}
         
-        .s-list { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--text-muted); }
+        .s-list { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--text-muted); flex-grow: 1; }
         .s-list li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
         .s-list li::before { content: '✓'; color: var(--green); font-weight: bold; }
+
+        .btn-service {
+            background: var(--terracotta-light); color: var(--terracotta); border: 1px solid var(--terracotta-light);
+            padding: 12px 15px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: 0.3s; width: 100%; margin-top: 20px; text-align: center;
+        }
+        .btn-service:hover { background: var(--terracotta); color: white; border-color: var(--terracotta); box-shadow: 0 4px 10px rgba(208, 128, 94, 0.2); }
 
         /* FORM PRENOTAZIONE */
         .form-group { margin-bottom: 22px; text-align: left; }
@@ -158,7 +166,7 @@
         <button class="tab-link active" onclick="apriSezione('home', this)">Home</button>
         <button class="tab-link" onclick="apriSezione('chi-sono', this)">Chi Sono</button>
         <button class="tab-link" onclick="apriSezione('servizi', this)">Servizi</button>
-        <button class="tab-link" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Prenota</button>
+        <button class="tab-link" id="nav-prenota" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Prenota</button>
         
         <button id="btn-nav-admin" class="tab-link" style="display:none; color:#e74c3c;" onclick="apriSezione('admin', this)">🛡️ Admin</button>
     </nav>
@@ -166,7 +174,7 @@
     <main>
         <div id="home" class="section active">
             <div class="hero-container">
-                <img src="https://raw.githubusercontent.com/TUO_NOME_UTENTE/TUO_REPO/main/WhatsApp%20Image%202026-03-06%20at%2011.44.58.jpeg" alt="Dott.ssa Federica Canossa" class="hero-img" onerror="this.src='https://via.placeholder.com/160/F8EBE6/D0805E?text=Foto'">
+                <img src="profilo.jpeg" alt="Dott.ssa Federica Canossa" class="hero-img" onerror="this.src='https://via.placeholder.com/160/F8EBE6/D0805E?text=Foto'">
                 
                 <div class="quote">"Se il cibo per te è sempre stato un problema, non vuol dire che lo debba essere per sempre."</div>
                 
@@ -231,6 +239,7 @@
                             <li>Elaborazione piano alimentare personalizzato</li>
                             <li>Invio materiali aggiuntivi e ricette</li>
                         </ul>
+                        <button class="btn-service" onclick="prenotaServizio('Piano con Grammature')">Prenota questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -243,6 +252,7 @@
                             <li>Indicazioni per tutti i pasti della giornata</li>
                             <li>Possibilità di evolvere al piano con grammature</li>
                         </ul>
+                        <button class="btn-service" onclick="prenotaServizio('Piano Senza Grammature')">Prenota questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -254,6 +264,7 @@
                             <li>Struttura alimentare settimanale unica</li>
                             <li>Grammature individuali personalizzate</li>
                         </ul>
+                        <button class="btn-service" onclick="prenotaServizio('Piano di Coppia')">Prenota questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -265,6 +276,7 @@
                             <li>Principi pratici della Dieta Mediterranea</li>
                             <li>Strategie per frequenze e abbinamenti</li>
                         </ul>
+                        <button class="btn-service" onclick="prenotaServizio('Educazione Alimentare')">Prenota questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -276,6 +288,7 @@
                             <li>Aggiornamento misurazioni (se necessario)</li>
                             <li>Strategie per superare le difficoltà</li>
                         </ul>
+                        <button class="btn-service" onclick="prenotaServizio('Controllo Periodico')">Prenota questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -287,6 +300,7 @@
                             <li>Strategie pratiche e subito applicabili</li>
                             <li>Materiali aggiuntivi dedicati</li>
                         </ul>
+                        <button class="btn-service" onclick="prenotaServizio('Consulenza Specifica')">Prenota questo percorso</button>
                     </div>
 
                 </div>
@@ -296,7 +310,7 @@
         <div id="prenota" class="section">
             <div class="info-card">
                 <h2>Prenota un Appuntamento</h2>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Seleziona il servizio che ti interessa e lasciami i tuoi contatti. Ti scriverò per concordare il giorno e l'ora esatta.</p>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Compila il modulo e lasciami i tuoi contatti. Ti scriverò per concordare il giorno e l'ora esatta.</p>
                 
                 <div class="form-group">
                     <label>Il tuo Nome e Cognome</label>
@@ -361,6 +375,25 @@
             document.getElementById(id).classList.add('active');
             if (el) el.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Funzione per prenotare direttamente da un Servizio
+        window.prenotaServizio = function(nomeServizio) {
+            // Seleziona il tab "Prenota" (l'elemento con id 'nav-prenota')
+            const tabPrenota = document.getElementById('nav-prenota');
+            apriSezione('prenota', tabPrenota);
+            
+            // Imposta automaticamente il menu a tendina
+            const selectMotivo = document.getElementById('paz-motivo');
+            if(selectMotivo) {
+                selectMotivo.value = nomeServizio;
+                
+                // Crea un piccolo effetto visivo (glow) per far capire all'utente che è stato selezionato in automatico
+                selectMotivo.style.boxShadow = "0 0 0 4px var(--terracotta-light)";
+                setTimeout(() => {
+                    selectMotivo.style.boxShadow = "none";
+                }, 1500);
+            }
         };
 
         // Simulazione Invio Form
