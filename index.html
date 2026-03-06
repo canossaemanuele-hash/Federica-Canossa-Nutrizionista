@@ -104,26 +104,37 @@
         /* FORM PRENOTAZIONE E MAPPA */
         .form-group { margin-bottom: 22px; text-align: left; }
         .form-group label { font-size: 13px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 15px 18px; border: 2px solid var(--border-light); border-radius: 14px; font-family: inherit; font-size: 15px; box-sizing: border-box; background-color: var(--bg-color); transition: all 0.3s ease; outline: none; color: var(--text-dark); }
+        .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="date"], .form-group select, .form-group textarea { width: 100%; padding: 15px 18px; border: 2px solid var(--border-light); border-radius: 14px; font-family: inherit; font-size: 15px; box-sizing: border-box; background-color: var(--bg-color); transition: all 0.3s ease; outline: none; color: var(--text-dark); }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--terracotta); background-color: #fff; box-shadow: 0 0 0 4px var(--terracotta-light); }
         .btn-submit { background: var(--terracotta); color: white; border: none; padding: 18px 24px; border-radius: 14px; cursor: pointer; font-size: 16px; font-weight: 600; width: 100%; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(208, 128, 94, 0.25); margin-top: 10px; }
         .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(208, 128, 94, 0.35); }
         .btn-submit:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; transform: none; }
         .map-container iframe { width: 100%; height: 300px; border: none; border-radius: var(--radius-md); background: #eee; }
+        
+        .privacy-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+        .privacy-check input { margin-top: 3px; accent-color: var(--terracotta); transform: scale(1.2); cursor: pointer; }
 
         /* DASHBOARD ADMIN */
         #admin { background: #fffcfb; border: 2px dashed #e74c3c; padding: 25px; border-radius: var(--radius-lg); }
-        .admin-nav { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid var(--border-light); padding-bottom: 15px;}
-        .admin-nav button { background: transparent; border: none; font-size: 16px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 5px 10px;}
+        .admin-nav { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid var(--border-light); padding-bottom: 15px; overflow-x: auto; white-space: nowrap;}
+        .admin-nav button { background: transparent; border: none; font-size: 15px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 5px 10px;}
         .admin-nav button.active { color: #e74c3c; border-bottom: 3px solid #e74c3c; }
         .admin-tab { display: none; }
         .admin-tab.active { display: block; animation: slideUp 0.3s ease; }
-        .paziente-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-light); background: white; border-radius: 12px; margin-bottom: 10px;}
+        .paziente-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-light); background: white; border-radius: 12px; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;}
         .status-badge { padding: 6px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
         .st-new { background: #fff3cd; color: #856404; }
-        .st-done { background: #d4edda; color: #155724; cursor: pointer; }
+        .st-done { background: #d4edda; color: #155724; }
         .slot-row { background: white; padding: 15px; border-radius: 12px; border: 1px solid var(--border-light); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
         .btn-delete { background: #ffebee; color: #c62828; border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;}
+        .btn-action-admin { border: 1px solid var(--border-light); background: var(--bg-color); font-size: 12px; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--text-dark); display: inline-flex; align-items: center; gap: 5px; transition: 0.2s;}
+        .btn-action-admin:hover { background: #eee; }
+        .btn-wa { background: #E8F5E9; color: #2E7D32; border-color: #C8E6C9; text-decoration: none; }
+        .btn-wa:hover { background: #C8E6C9; }
+
+        /* Date Multiple Chips */
+        .chip { background: var(--terracotta-light); color: var(--terracotta); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--terracotta); }
+        .chip button { background: none; border: none; color: var(--terracotta); cursor: pointer; font-weight: bold; font-size: 14px; padding: 0; display: flex; align-items: center; }
     </style>
 </head>
 <body>
@@ -154,7 +165,6 @@
                     <span class="badge b-terra">✿ Percorsi di coppia o familiari</span>
                     <span class="badge b-blue">⚕ Colon irritabile</span>
                     <span class="badge b-green">♥ Nutrizione clinica</span>
-                    <span class="badge b-terra">🏆 Sport e performance</span>
                     <span class="badge b-green">👶 Nutrizione Pediatrica</span>
                     <span class="badge b-blue">↺ Reflusso e digestione</span>
                 </div>
@@ -289,6 +299,11 @@
                     <label>Note aggiuntive (Opzionale)</label>
                     <textarea id="paz-note" rows="2" placeholder="Quali sono i tuoi obiettivi?"></textarea>
                 </div>
+
+                <label class="privacy-check">
+                    <input type="checkbox" id="paz-privacy">
+                    <span>Ho letto e accetto il trattamento dei dati personali ai fini della prenotazione, in conformità con la normativa GDPR sulla privacy.</span>
+                </label>
                 
                 <button id="btn-invia-prenotazione" class="btn-submit" onclick="inviaPrenotazione()">Invia Richiesta Prenotazione</button>
             </div>
@@ -321,18 +336,19 @@
             </div>
 
             <div id="admin-calendario" class="admin-tab">
-                <p style="font-size:14px; color:var(--text-muted);">Aggiungi i giorni e gli orari in cui sei disponibile per ricevere in studio.</p>
+                <p style="font-size:14px; color:var(--text-muted);">Seleziona una o più date e inserisci gli orari in cui sei disponibile in studio.</p>
                 
                 <div style="background: var(--bg-color); padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border-light);">
                     <div class="form-group">
-                        <label>1. Scegli un Giorno</label>
-                        <input type="date" id="admin-new-date">
+                        <label>1. Scegli le Date (puoi sceglierne più di una)</label>
+                        <input type="date" id="admin-multi-date" onchange="aggiungiDataMultipla()">
+                        <div id="chips-date-container" style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;"></div>
                     </div>
                     <div class="form-group">
                         <label>2. Inserisci gli Orari (separati da virgola)</label>
                         <input type="text" id="admin-new-times" placeholder="Es. 09:00, 11:30, 15:00, 17:30">
                     </div>
-                    <button class="btn-submit" style="background: #27ae60; box-shadow: none;" onclick="aggiungiDisponibilitaAdmin()">➕ Salva Disponibilità</button>
+                    <button class="btn-submit" style="background: #27ae60; box-shadow: none;" onclick="salvaDisponibilitaMultiple()">➕ Salva per i giorni selezionati</button>
                 </div>
 
                 <h3 style="font-size: 16px;">Calendario Attuale:</h3>
@@ -350,33 +366,22 @@
         const SUPABASE_URL = 'https://zwubscpykgprkrnwukdc.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3dWJzY3B5a2dwcmtybnd1a2RjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTEzODIsImV4cCI6MjA4ODM2NzM4Mn0.4zsMugqI-kveF7eMqLVgbLhGe-tLOlhqWfR2dtYQipU';
         
-        // CORREZIONE ERRORE: Variabile chiamata clientSupabase per non creare conflitti
         const clientSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
         let mockDisponibilita = {}; 
 
-        // Caricamento Iniziale
-        window.onload = function() {
-            caricaDatiSupabase();
-        };
+        window.onload = function() { caricaDatiSupabase(); };
 
         async function caricaDatiSupabase() {
-            // 1. Scarica il calendario
-            const { data: calData, error: calError } = await clientSupabase.from('disponibilita').select('*').order('data_giorno', { ascending: true });
-            if (!calError && calData) {
+            const { data: calData } = await clientSupabase.from('disponibilita').select('*').order('data_giorno', { ascending: true });
+            if (calData) {
                 mockDisponibilita = {};
-                calData.forEach(item => {
-                    mockDisponibilita[item.data_giorno] = item.orari.split(',').map(o => o.trim());
-                });
+                calData.forEach(item => mockDisponibilita[item.data_giorno] = item.orari.split(',').map(o => o.trim()));
                 caricaDateMenuPaziente();
                 aggiornaListaAdmin();
             }
 
-            // 2. Scarica le Prenotazioni per l'area Admin
-            const { data: prenData, error: prenError } = await clientSupabase.from('prenotazioni').select('*').order('created_at', { ascending: false });
-            if (!prenError && prenData) {
-                renderizzaPrenotazioniAdmin(prenData);
-            }
+            const { data: prenData } = await clientSupabase.from('prenotazioni').select('*').order('created_at', { ascending: false });
+            if (prenData) renderizzaPrenotazioniAdmin(prenData);
         }
 
         // ==========================================
@@ -453,9 +458,14 @@
             const nome = document.getElementById('paz-nome').value.trim();
             const tel = document.getElementById('paz-tel').value.trim();
             const note = document.getElementById('paz-note').value.trim();
+            const privacy = document.getElementById('paz-privacy').checked;
 
             if(!motivo || !data || !ora || !nome || !tel) {
                 alert("⚠️ Compila tutti i campi obbligatori (Servizio, Data, Ora, Nome e Telefono).");
+                return;
+            }
+            if(!privacy) {
+                alert("⚠️ Devi accettare il trattamento dei dati personali (Privacy) per inviare la richiesta.");
                 return;
             }
 
@@ -464,17 +474,11 @@
             btn.innerText = "Invio in corso...";
 
             const { error } = await clientSupabase.from('prenotazioni').insert([{
-                nome: nome,
-                telefono: tel,
-                servizio: motivo,
-                data_prenotazione: data,
-                ora_prenotazione: ora,
-                note: note
+                nome: nome, telefono: tel, servizio: motivo, data_prenotazione: data, ora_prenotazione: ora, note: note
             }]);
 
             if (error) {
-                alert("❌ Errore durante l'invio. Verifica le tabelle su Supabase.");
-                console.error(error);
+                alert("❌ Errore durante l'invio. Riprova più tardi.");
             } else {
                 alert(`✅ Richiesta inviata con successo!\n\nGrazie ${nome}, la Dott.ssa Canossa ti ricontatterà al più presto per confermare l'appuntamento.`);
                 document.getElementById('paz-nome').value = '';
@@ -483,6 +487,7 @@
                 document.getElementById('paz-data').value = '';
                 document.getElementById('paz-ora').innerHTML = '<option value="">---</option>';
                 document.getElementById('paz-note').value = '';
+                document.getElementById('paz-privacy').checked = false;
             }
 
             btn.disabled = false;
@@ -491,7 +496,7 @@
         };
 
         // ==========================================
-        // AREA ADMIN SEGRETA
+        // AREA ADMIN SEGRETA (Date Multiple & WhatsApp)
         // ==========================================
         let adminClicks = 0; let adminTimer;
         
@@ -515,26 +520,59 @@
             document.getElementById('tab-btn-' + tabName).classList.add('active');
         };
 
-        window.aggiungiDisponibilitaAdmin = async function() {
-            const dataInput = document.getElementById('admin-new-date').value;
+        // --- Gestione Date Multiple ---
+        let dateSelezionateTemporanee = [];
+        
+        window.aggiungiDataMultipla = function() {
+            const dateInput = document.getElementById('admin-multi-date');
+            const d = dateInput.value;
+            if(d && !dateSelezionateTemporanee.includes(d)) {
+                dateSelezionateTemporanee.push(d);
+                renderChipsDate();
+            }
+            dateInput.value = ''; // Resetta l'input visivo per permettere una nuova selezione
+        };
+
+        window.rimuoviDataMultipla = function(d) {
+            dateSelezionateTemporanee = dateSelezionateTemporanee.filter(data => data !== d);
+            renderChipsDate();
+        };
+
+        function renderChipsDate() {
+            const container = document.getElementById('chips-date-container');
+            container.innerHTML = '';
+            // Ordina le date cronologicamente
+            dateSelezionateTemporanee.sort().forEach(d => {
+                let parts = d.split('-');
+                let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                container.innerHTML += `<div class="chip">${dataIta} <button onclick="rimuoviDataMultipla('${d}')">✖</button></div>`;
+            });
+        }
+
+        window.salvaDisponibilitaMultiple = async function() {
             let orariInput = document.getElementById('admin-new-times').value;
 
-            if(!dataInput || !orariInput) return alert("⚠️ Inserisci la data e almeno un orario!");
+            if(dateSelezionateTemporanee.length === 0) return alert("⚠️ Seleziona almeno un giorno dal calendario!");
+            if(!orariInput) return alert("⚠️ Inserisci almeno un orario!");
 
             let orariPuliti = orariInput.split(',').map(o => o.trim()).filter(o => o !== "").join(', ');
 
-            const { error } = await clientSupabase.from('disponibilita').upsert({
-                data_giorno: dataInput,
+            // Creiamo un array di record da inviare tutti in una volta a Supabase
+            let records = dateSelezionateTemporanee.map(data => ({
+                data_giorno: data,
                 orari: orariPuliti
-            }, { onConflict: 'data_giorno' });
+            }));
+
+            const { error } = await clientSupabase.from('disponibilita').upsert(records, { onConflict: 'data_giorno' });
 
             if (error) {
-                alert("Errore nel salvataggio. Assicurati di aver lanciato il codice SQL su Supabase!");
+                alert("Errore nel salvataggio.");
                 console.error(error);
             } else {
-                alert("✅ Calendario aggiornato!");
-                document.getElementById('admin-new-date').value = '';
+                alert(`✅ Calendario aggiornato per ${records.length} giorn${records.length > 1 ? 'i' : 'o'}!`);
                 document.getElementById('admin-new-times').value = '';
+                dateSelezionateTemporanee = []; // Svuotiamo le etichette
+                renderChipsDate();
                 caricaDatiSupabase();
             }
         };
@@ -542,18 +580,6 @@
         window.eliminaGiornoAdmin = async function(dataKey) {
             if(confirm("Vuoi eliminare tutte le disponibilità per questo giorno?")) {
                 await clientSupabase.from('disponibilita').delete().eq('data_giorno', dataKey);
-                caricaDatiSupabase();
-            }
-        };
-
-        window.segnaCompletata = async function(id) {
-            await clientSupabase.from('prenotazioni').update({ stato: 'Gestita' }).eq('id', id);
-            caricaDatiSupabase();
-        };
-
-        window.eliminaPrenotazione = async function(id) {
-            if(confirm("Sei sicuro di voler eliminare definitivamente questa prenotazione?")) {
-                await clientSupabase.from('prenotazioni').delete().eq('id', id);
                 caricaDatiSupabase();
             }
         };
@@ -568,7 +594,10 @@
                 return;
             }
 
-            for (let data in mockDisponibilita) {
+            // Ordina le chiavi (date) per mostrarle in ordine cronologico corretto
+            let dateOrdinate = Object.keys(mockDisponibilita).sort();
+
+            for (let data of dateOrdinate) {
                 let parts = data.split('-');
                 let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
                 let orari = mockDisponibilita[data].join(' | ');
@@ -588,6 +617,20 @@
             }
         }
 
+        // --- Gestione Stato Prenotazioni (Interruttore) ---
+        window.toggleStatoPrenotazione = async function(id, statoAttuale) {
+            let nuovoStato = (statoAttuale === 'Nuova') ? 'Gestita' : 'Nuova';
+            await clientSupabase.from('prenotazioni').update({ stato: nuovoStato }).eq('id', id);
+            caricaDatiSupabase();
+        };
+
+        window.eliminaPrenotazione = async function(id) {
+            if(confirm("Sei sicuro di voler eliminare definitivamente questa prenotazione?")) {
+                await clientSupabase.from('prenotazioni').delete().eq('id', id);
+                caricaDatiSupabase();
+            }
+        };
+
         function renderizzaPrenotazioniAdmin(prenotazioni) {
             const container = document.getElementById('lista-prenotazioni-admin');
             container.innerHTML = "";
@@ -604,22 +647,32 @@
                 let isNew = p.stato === 'Nuova';
                 let badgeClass = isNew ? 'st-new' : 'st-done';
                 let badgeText = isNew ? 'Nuova' : 'Gestita';
-                let actionBtn = isNew ? `<button onclick="segnaCompletata(${p.id})" style="border:none; background:transparent; font-size:16px; cursor:pointer;" title="Segna come Gestita">✅</button>` : `<button onclick="eliminaPrenotazione(${p.id})" style="border:none; background:transparent; font-size:16px; cursor:pointer;" title="Elimina del tutto">🗑️</button>`;
+                
+                // Formattazione per WhatsApp: rimuove spazi dal numero. Se non ha prefisso, aggiunge 39.
+                let telWA = p.telefono.replace(/\D/g, ''); 
+                if(telWA.startsWith('3')) telWA = '39' + telWA;
+                let msgWA = encodeURIComponent(`Ciao ${p.nome}, ti scrivo dallo studio della Dott.ssa Canossa in merito alla tua richiesta di appuntamento per il giorno ${dataIta}...`);
 
-                let noteHtml = p.note ? `<br><span style="font-size:12px; color:#555; display:inline-block; margin-top:5px; background:#f5f5f5; padding:4px 8px; border-radius:4px;"><b>Note:</b> ${p.note}</span>` : "";
+                // Interruttore per lo Stato
+                let toggleBtnText = isNew ? '✅ Segna come Gestita' : '⏪ Torna a Nuova';
+                
+                let noteHtml = p.note ? `<br><span style="font-size:12px; color:#555; display:inline-block; margin-top:5px; background:#f5f5f5; padding:6px 10px; border-radius:8px;"><b>Note:</b> ${p.note}</span>` : "";
 
                 let div = document.createElement('div');
                 div.className = "paziente-row";
                 div.innerHTML = `
-                    <div style="flex:1;">
-                        <b style="color: var(--text-dark);">${p.nome}</b> 
-                        <span style="font-size: 13px; color: #D0805E; font-weight:bold;">(${dataIta} - ${p.ora_prenotazione})</span><br>
+                    <div style="flex: 1; min-width: 200px;">
+                        <b style="color: var(--text-dark); font-size:16px;">${p.nome}</b> 
+                        <span class="status-badge ${badgeClass}" style="margin-left:5px;">${badgeText}</span><br>
+                        
+                        <span style="font-size: 14px; color: #D0805E; font-weight:600;">📅 ${dataIta} - Ore ${p.ora_prenotazione}</span><br>
                         <span style="font-size:13px; color:var(--text-muted);">📞 ${p.telefono} | ${p.servizio}</span>
                         ${noteHtml}
                     </div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="status-badge ${badgeClass}">${badgeText}</span>
-                        ${actionBtn}
+                    <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
+                        <a href="https://wa.me/${telWA}?text=${msgWA}" target="_blank" class="btn-action-admin btn-wa">💬 WhatsApp</a>
+                        <button onclick="toggleStatoPrenotazione(${p.id}, '${p.stato}')" class="btn-action-admin">${toggleBtnText}</button>
+                        <button onclick="eliminaPrenotazione(${p.id})" class="btn-action-admin" style="color:#c62828;">🗑️ Elimina Definitivamente</button>
                     </div>
                 `;
                 container.appendChild(div);
