@@ -172,13 +172,13 @@
 
                 <div class="badges-grid">
                     <button class="badge b-terra" onclick="vaiAServizio('srv-educazione')">✿ Educazione alimentare</button>
-                    <button class="badge b-blue" onclick="vaiAServizio('srv-consulenze')">♀ Menopausa</button>
+                    <button class="badge b-blue" onclick="vaiAServizio('srv-grammature')">♀ Menopausa</button>
                     <button class="badge b-green" onclick="vaiAServizio('srv-consulenze')">🥣 Svezzamento</button>
                     <button class="badge b-terra" onclick="vaiAServizio('srv-coppia')">✿ Percorsi di coppia o familiari</button>
-                    <button class="badge b-blue" onclick="vaiAServizio('srv-consulenze')">⚕ Colon irritabile</button>
+                    <button class="badge b-blue" onclick="vaiAServizio('srv-grammature')">⚕ Colon irritabile</button>
                     <button class="badge b-green" onclick="vaiAServizio('srv-grammature')">♥ Nutrizione clinica</button>
                     <button class="badge b-green" onclick="vaiAServizio('srv-senza-grammature')">👶 Nutrizione Pediatrica</button>
-                    <button class="badge b-blue" onclick="vaiAServizio('srv-consulenze')">↺ Reflusso e digestione</button>
+                    <button class="badge b-blue" onclick="vaiAServizio('srv-grammature')">↺ Reflusso e digestione</button>
                 </div>
             </div>
         </div>
@@ -254,7 +254,7 @@
                     <div class="service-box" id="srv-consulenze">
                         <h3>💡 Consulenze Specifiche</h3>
                         <span class="s-tag b-green">45 minuti / 1 ora</span>
-                        <p style="font-size: 13px; margin-top:0;"><strong>Temi:</strong> Svezzamento, Menopausa, Sport, Disturbi digestivi.</p>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Temi:</strong> Svezzamento.</p>
                         <ul class="s-list"><li>Incontro mirato su un tema preciso</li><li>Strategie pratiche e subito applicabili</li><li>Materiali aggiuntivi dedicati</li></ul>
                         <button class="btn-service" onclick="prenotaServizio('Consulenza Specifica')">Richiedi Info</button>
                     </div>
@@ -540,7 +540,6 @@
                 let telWA = p.telefono.replace(/\D/g, ''); 
                 if(telWA.startsWith('3')) telWA = '39' + telWA;
                 
-                // Messaggio Adattato per la "Richiesta Informazioni"
                 let msgWA = encodeURIComponent(`Ciao ${p.nome}, sono la Dott.ssa Federica Canossa. Ti scrivo in merito alla tua richiesta di informazioni sul percorso: "${p.servizio}". Dimmi pure, come posso aiutarti?`);
 
                 let toggleBtnText = isNew ? '✅ Segna come Gestita' : '⏪ Riporta a Da Contattare';
