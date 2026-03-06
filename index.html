@@ -77,8 +77,10 @@
         .hero-img { width: 160px; height: 160px; border-radius: 35%; object-fit: cover; border: 5px solid var(--terracotta-light); margin-bottom: 25px; box-shadow: 0 10px 25px rgba(208, 128, 94, 0.15); }
         .quote { font-size: 20px; font-style: italic; color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; font-weight: 300; }
         .badges-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-        .badge { padding: 10px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; cursor: default; }
-        .badge:hover { transform: scale(1.05); }
+        
+        /* I Bottoni Badges sono ora veri e propri bottoni */
+        .badge { padding: 10px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; cursor: pointer; border: none; font-family: inherit; }
+        .badge:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .b-terra { background: var(--terracotta-light); color: var(--terracotta); }
         .b-blue { background: var(--blue-light); color: var(--blue); }
         .b-green { background: var(--green-light); color: var(--green); }
@@ -90,6 +92,10 @@
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         .service-box { background: var(--card-bg); border: 2px solid var(--border-light); padding: 25px; border-radius: var(--radius-md); transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
         .service-box:hover { border-color: var(--terracotta); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+        
+        /* Effetto Evidenziazione Servizio (quando si preme dalla Home) */
+        .highlight-box { box-shadow: 0 0 0 4px var(--terracotta-light), 0 15px 30px rgba(208, 128, 94, 0.2) !important; border-color: var(--terracotta) !important; transform: translateY(-5px); }
+        
         .service-box h3 { font-size: 18px; margin: 0 0 10px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;}
         .service-box .s-tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px; width: max-content;}
         .s-list { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--text-muted); flex-grow: 1; }
@@ -124,7 +130,6 @@
 
         /* DASHBOARD ADMIN */
         #admin { background: #fffcfb; border: 2px dashed #e74c3c; padding: 25px; border-radius: var(--radius-lg); }
-        
         .admin-filters { display: flex; gap: 10px; margin-bottom: 15px; }
         .btn-filter { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-light); background: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; color: var(--text-muted); }
         .btn-filter.active { background: var(--terracotta); border-color: var(--terracotta); color: white; }
@@ -149,8 +154,8 @@
     <nav id="main-nav">
         <button class="tab-link active" onclick="apriSezione('home', this)">Home</button>
         <button class="tab-link" onclick="apriSezione('chi-sono', this)">Approccio</button>
-        <button class="tab-link" onclick="apriSezione('servizi', this)">Servizi</button>
-        <button class="tab-link" id="nav-prenota" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Richiedi Visita</button>
+        <button class="tab-link" id="nav-btn-servizi" onclick="apriSezione('servizi', this)">Servizi</button>
+        <button class="tab-link" id="nav-prenota" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Richiedi Appuntamento</button>
         
         <button id="btn-nav-admin" class="tab-link" style="display:none; color:#e74c3c;" onclick="apriSezione('admin', this)">🛡️ Admin</button>
     </nav>
@@ -160,15 +165,17 @@
             <div class="hero-container">
                 <img src="profilo.jpeg" alt="Dott.ssa Federica Canossa" class="hero-img" onerror="this.src='https://via.placeholder.com/160/F8EBE6/D0805E?text=Foto'">
                 <div class="quote">"Se il cibo per te è sempre stato un problema, non vuol dire che lo debba essere per sempre."</div>
+                
+                <p style="font-size: 14px; font-weight: 600; color: var(--terracotta); margin-bottom: 15px;">Di cosa mi occupo (clicca per scoprire):</p>
                 <div class="badges-grid">
-                    <span class="badge b-terra">✿ Educazione alimentare</span>
-                    <span class="badge b-blue">♀ Menopausa</span>
-                    <span class="badge b-green">🥣 Svezzamento</span>
-                    <span class="badge b-terra">✿ Percorsi di coppia o familiari</span>
-                    <span class="badge b-blue">⚕ Colon irritabile</span>
-                    <span class="badge b-green">♥ Nutrizione clinica</span>
-                    <span class="badge b-green">👶 Nutrizione Pediatrica</span>
-                    <span class="badge b-blue">↺ Reflusso e digestione</span>
+                    <button class="badge b-terra" onclick="vaiAServizio('srv-educazione')">✿ Educazione alimentare</button>
+                    <button class="badge b-blue" onclick="vaiAServizio('srv-consulenze')">♀ Menopausa</button>
+                    <button class="badge b-green" onclick="vaiAServizio('srv-consulenze')">🥣 Svezzamento</button>
+                    <button class="badge b-terra" onclick="vaiAServizio('srv-coppia')">✿ Percorsi di coppia o familiari</button>
+                    <button class="badge b-blue" onclick="vaiAServizio('srv-consulenze')">⚕ Colon irritabile</button>
+                    <button class="badge b-green" onclick="vaiAServizio('srv-grammature')">♥ Nutrizione clinica</button>
+                    <button class="badge b-green" onclick="vaiAServizio('srv-senza-grammature')">👶 Nutrizione Pediatrica</button>
+                    <button class="badge b-blue" onclick="vaiAServizio('srv-consulenze')">↺ Reflusso e digestione</button>
                 </div>
             </div>
         </div>
@@ -201,7 +208,7 @@
                 <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 30px;">Scegli il percorso più adatto alle tue esigenze. Ogni piano è costruito su misura per te.</p>
                 
                 <div class="services-grid">
-                    <div class="service-box">
+                    <div class="service-box" id="srv-grammature">
                         <h3>📋 Piano con Grammature</h3>
                         <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> controllo peso, patologie, performance sportiva.</p>
@@ -209,7 +216,7 @@
                         <button class="btn-service" onclick="prenotaServizio('Piano con Grammature')">Richiedi questo percorso</button>
                     </div>
 
-                    <div class="service-box">
+                    <div class="service-box" id="srv-senza-grammature">
                         <h3>⚖️ Piano Senza Grammature</h3>
                         <span class="s-tag b-blue">1 ora</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> bambini, famiglie, chi vuole mangiare meglio senza numeri.</p>
@@ -217,7 +224,7 @@
                         <button class="btn-service" onclick="prenotaServizio('Piano Senza Grammature')">Richiedi questo percorso</button>
                     </div>
 
-                    <div class="service-box">
+                    <div class="service-box" id="srv-coppia">
                         <h3>🤝 Piano di Coppia</h3>
                         <span class="s-tag b-green">1 ora / 1 ora e mezza</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> coppie conviventi o chi mangia gli stessi pasti.</p>
@@ -225,7 +232,7 @@
                         <button class="btn-service" onclick="prenotaServizio('Piano di Coppia')">Richiedi questo percorso</button>
                     </div>
 
-                    <div class="service-box">
+                    <div class="service-box" id="srv-educazione">
                         <h3>🛒 Educazione Alimentare</h3>
                         <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> imparare a fare la spesa e gestire i pasti in autonomia.</p>
@@ -233,7 +240,7 @@
                         <button class="btn-service" onclick="prenotaServizio('Educazione Alimentare')">Richiedi questo percorso</button>
                     </div>
 
-                    <div class="service-box">
+                    <div class="service-box" id="srv-controllo">
                         <h3>🔄 Controllo Periodico</h3>
                         <span class="s-tag b-blue">30 / 45 minuti</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> chi deve monitorare i progressi o adattare il piano.</p>
@@ -241,7 +248,7 @@
                         <button class="btn-service" onclick="prenotaServizio('Controllo Periodico')">Richiedi questo percorso</button>
                     </div>
 
-                    <div class="service-box">
+                    <div class="service-box" id="srv-consulenze">
                         <h3>💡 Consulenze Specifiche</h3>
                         <span class="s-tag b-green">45 minuti / 1 ora</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Temi:</strong> Svezzamento, Menopausa, Sport, Disturbi digestivi.</p>
@@ -376,12 +383,38 @@
         // ==========================================
         // LOGICA DI BASE E NAVIGAZIONE
         // ==========================================
-        window.apriSezione = function(id, el) {
+        window.apriSezione = function(id, el, bloccaScroll = false) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('#main-nav .tab-link').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             if (el) el.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Scorre in alto solo se non viene bloccato (utile per la funzione vaiAServizio)
+            if(!bloccaScroll) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+        // Funzione per navigare ai servizi tramite i badge della Home
+        window.vaiAServizio = function(servizioId) {
+            const tabServizi = document.getElementById('nav-btn-servizi');
+            
+            // 1. Apri la sezione servizi ma senza scrollare in cima in automatico
+            apriSezione('servizi', tabServizi, true);
+            
+            // 2. Trova il riquadro esatto e fallo scorrere verso il centro dello schermo
+            setTimeout(() => {
+                const box = document.getElementById(servizioId);
+                if(box) {
+                    // Calcolo la posizione tenendo conto del menu fisso (sticky)
+                    const y = box.getBoundingClientRect().top + window.scrollY - 100;
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                    
+                    // 3. Applica l'effetto luminoso
+                    box.classList.add('highlight-box');
+                    setTimeout(() => box.classList.remove('highlight-box'), 2000);
+                }
+            }, 100); 
         };
 
         window.prenotaServizio = function(nomeServizio) {
@@ -418,7 +451,6 @@
             btn.disabled = true;
             btn.innerText = "Invio in corso...";
 
-            // Inviamo "Da concordare" per non mandare in errore il database SQL esistente
             const { error } = await clientSupabase.from('prenotazioni').insert([{
                 nome: nome, telefono: tel, servizio: motivo, data_prenotazione: "Da concordare", ora_prenotazione: "Da concordare", note: note
             }]);
@@ -440,7 +472,6 @@
             caricaDatiSupabase();
         };
 
-        // --- Gestione Modal Successo ---
         function mostraModalSuccess(nomePaziente) {
             document.getElementById('modal-success').style.display = 'flex';
             document.getElementById('succ-nome').innerText = nomePaziente.split(' ')[0]; 
@@ -467,7 +498,6 @@
             }
         };
 
-        // --- Gestione Stato Prenotazioni e Filtri ---
         window.setFiltroPrenotazioni = function(filtro) {
             filtroCorrente = filtro;
             document.getElementById('flt-future').classList.remove('active');
@@ -506,7 +536,7 @@
             }
 
             prenotazioniFiltrate.forEach(p => {
-                let dataCreazione = new Date(p.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' });
+                let dataCreazione = new Date(p.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
                 
                 let isNew = p.stato === 'Nuova';
                 let badgeClass = isNew ? 'st-new' : 'st-done';
@@ -515,10 +545,12 @@
                 let telWA = p.telefono.replace(/\D/g, ''); 
                 if(telWA.startsWith('3')) telWA = '39' + telWA;
                 
-                let msgWA = encodeURIComponent(`Ciao ${p.nome}, sono la Dott.ssa Federica Canossa. Ti scrivo per concordare insieme il giorno e l'ora per la tua richiesta di appuntamento per il percorso: ${p.servizio}...`);
+                let msgWA = encodeURIComponent(`Ciao ${p.nome}, sono la Dott.ssa Federica Canossa. Ti scrivo in merito alla tua richiesta di appuntamento per il percorso "${p.servizio}". Quali giorni e orari ti tornerebbero comodi?`);
 
                 let toggleBtnText = isNew ? '✅ Segna come Gestita' : '⏪ Riporta a Da Contattare';
-                let noteHtml = p.note ? `<br><span style="font-size:12px; color:#555; display:inline-block; margin-top:5px; background:#f5f5f5; padding:6px 10px; border-radius:8px;"><b>Note del paziente:</b> ${p.note}</span>` : "";
+                
+                // Formatta il campo "Note/Obiettivi"
+                let noteHtml = p.note ? `<br><span style="font-size:12px; color:#555; display:inline-block; margin-top:5px; background:#f5f5f5; padding:6px 10px; border-radius:8px;"><b>Obiettivi del paziente:</b> ${p.note}</span>` : "";
 
                 let div = document.createElement('div');
                 div.className = "paziente-row";
