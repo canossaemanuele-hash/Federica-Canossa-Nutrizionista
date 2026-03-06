@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dott.ssa Federica Canossa - Biologa Nutrizionista</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           1. VARIABILI E PALETTE PASTELLO
+           ========================================== */
+        :root {
+            --terracotta: #D0805E; 
+            --terracotta-light: #F8EBE6;
+            --blue: #6FA2B8; 
+            --blue-light: #E9F1F5;
+            --green: #8AA482; 
+            --green-light: #EEF3EC;
+            
+            --text-dark: #3A312B;
+            --text-muted: #7A6F68;
+            --bg-color: #FDFBF9; 
+            --card-bg: #FFFFFF;
+            
+            --border-light: #EFE9E5;
+            --shadow-soft: 0 12px 35px rgba(58, 49, 43, 0.05);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-dark); 
+            margin: 0; padding: 0; 
+            display: flex; flex-direction: column; align-items: center; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER E NAVIGAZIONE */
+        header { 
+            background: var(--card-bg); 
+            width: 100%; text-align: center; 
+            padding: 2.5rem 0 3.5rem 0; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border-bottom: 3px solid var(--terracotta-light);
+        }
+        
+        h1 { 
+            margin: 0; font-weight: 300; font-size: 28px; color: var(--text-dark);
+            cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; 
+        }
+        h1 strong { color: var(--terracotta); font-weight: 700; }
+
+        nav { 
+            display: flex; justify-content: center; gap: 6px; margin-top: -25px; 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            padding: 8px; border-radius: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); 
+            flex-wrap: wrap; z-index: 10; border: 1px solid var(--border-light);
+        }
+        
+        nav button { 
+            background: transparent; border: none; padding: 12px 20px; border-radius: 30px; 
+            font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; 
+        }
+        nav button:hover { background: var(--bg-color); color: var(--terracotta); }
+        nav button.active { background: var(--terracotta); color: white; box-shadow: 0 4px 12px rgba(208, 128, 94, 0.3); }
+
+        main { width: 95%; max-width: 900px; margin: 40px auto; }
+
+        /* SEZIONI E ANIMAZIONI */
+        .section { display: none; animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .section.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* HERO & BADGES (Home) */
+        .hero-container {
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            background: var(--card-bg); padding: 40px 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
+            margin-bottom: 30px; border: 1px solid var(--border-light);
+        }
+        .hero-img {
+            width: 160px; height: 160px; border-radius: 35%; object-fit: cover;
+            border: 5px solid var(--terracotta-light); margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(208, 128, 94, 0.15);
+        }
+        .quote {
+            font-size: 20px; font-style: italic; color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; font-weight: 300;
+        }
+        .badges-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+        }
+        .badge {
+            padding: 10px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;
+            transition: 0.2s; cursor: default;
+        }
+        .badge:hover { transform: scale(1.05); }
+        .b-terra { background: var(--terracotta-light); color: var(--terracotta); }
+        .b-blue { background: var(--blue-light); color: var(--blue); }
+        .b-green { background: var(--green-light); color: var(--green); }
+
+        /* CARDS E LISTE */
+        .info-card {
+            background: var(--card-bg); padding: 35px; border-radius: var(--radius-lg); 
+            box-shadow: var(--shadow-soft); margin-bottom: 25px; border: 1px solid var(--border-light);
+        }
+        .info-card h2 { color: var(--terracotta); margin-top: 0; font-size: 24px; border-bottom: 2px solid var(--terracotta-light); padding-bottom: 15px; margin-bottom: 25px; }
+        
+        /* GRIGLIA SERVIZI */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .service-box {
+            background: var(--card-bg); border: 2px solid var(--border-light); padding: 25px; 
+            border-radius: var(--radius-md); transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .service-box:hover { border-color: var(--terracotta); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+        .service-box h3 { font-size: 18px; margin: 0 0 10px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;}
+        .service-box .s-tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px;}
+        
+        .s-list { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--text-muted); }
+        .s-list li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+        .s-list li::before { content: '✓'; color: var(--green); font-weight: bold; }
+
+        /* FORM PRENOTAZIONE */
+        .form-group { margin-bottom: 22px; text-align: left; }
+        .form-group label { font-size: 13px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; padding: 15px 18px; border: 2px solid var(--border-light); border-radius: 14px; 
+            font-family: inherit; font-size: 15px; box-sizing: border-box; background-color: var(--bg-color); 
+            transition: all 0.3s ease; outline: none; color: var(--text-dark);
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
+            border-color: var(--terracotta); background-color: #fff; box-shadow: 0 0 0 4px var(--terracotta-light); 
+        }
+
+        .btn-submit { 
+            background: var(--terracotta); color: white; border: none; padding: 18px 24px; 
+            border-radius: 14px; cursor: pointer; font-size: 16px; font-weight: 600; width: 100%; 
+            transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(208, 128, 94, 0.25);
+        }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(208, 128, 94, 0.35); }
+
+        /* DASHBOARD ADMIN */
+        #admin { background: #fffcfb; border: 2px dashed #e74c3c; }
+        .paziente-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-light); background: white; border-radius: 12px; margin-bottom: 10px;}
+        .status-badge { padding: 6px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .st-new { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 onclick="clickSegreto()">Dott.ssa <strong>Federica Canossa</strong></h1>
+        <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 15px; font-weight: 500;">Biologa Nutrizionista</p>
+    </header>
+
+    <nav id="main-nav">
+        <button class="tab-link active" onclick="apriSezione('home', this)">Home</button>
+        <button class="tab-link" onclick="apriSezione('chi-sono', this)">Chi Sono</button>
+        <button class="tab-link" onclick="apriSezione('servizi', this)">Servizi</button>
+        <button class="tab-link" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Prenota</button>
+        
+        <button id="btn-nav-admin" class="tab-link" style="display:none; color:#e74c3c;" onclick="apriSezione('admin', this)">🛡️ Admin</button>
+    </nav>
+
+    <main>
+        <div id="home" class="section active">
+            <div class="hero-container">
+                <img src="https://raw.githubusercontent.com/TUO_NOME_UTENTE/TUO_REPO/main/WhatsApp%20Image%202026-03-06%20at%2011.44.58.jpeg" alt="Dott.ssa Federica Canossa" class="hero-img" onerror="this.src='https://via.placeholder.com/160/F8EBE6/D0805E?text=Foto'">
+                
+                <div class="quote">"Se il cibo per te è sempre stato un problema, non vuol dire che lo debba essere per sempre."</div>
+                
+                <div class="badges-grid">
+                    <span class="badge b-terra">✿ Educazione alimentare</span>
+                    <span class="badge b-blue">♀ Menopausa</span>
+                    <span class="badge b-green">♥ Gravidanza</span>
+                    <span class="badge b-terra">✿ Percorsi di coppia o familiari</span>
+                    <span class="badge b-blue">⚕ Colon irritabile</span>
+                    <span class="badge b-green">♥ Nutrizione clinica</span>
+                    <span class="badge b-terra">🏆 Sport e performance</span>
+                    <span class="badge b-green">👶 Nutrizione Pediatrica</span>
+                    <span class="badge b-blue">↺ Reflusso e digestione</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="chi-sono" class="section">
+            <div class="info-card">
+                <h2>Formazione & Specializzazioni</h2>
+                <p style="line-height: 1.7;">Sono <b>Federica Canossa, Biologa Nutrizionista</b>: aiuto a costruire un rapporto sereno e consapevole con il cibo, senza divieti né sensi di colpa, con ascolto e strategie pratiche che durano nel tempo.</p>
+                
+                <ul style="list-style: none; padding: 0; margin-top: 30px;">
+                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
+                        <span style="font-size: 24px;">🎓</span>
+                        <div><b>Laurea Magistrale in Scienze della Nutrizione Umana</b><br><span style="font-size:13px; color:var(--text-muted);">Università di Parma</span></div>
+                    </li>
+                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
+                        <span style="font-size: 24px;">🎓</span>
+                        <div><b>Laurea Triennale in Scienze Biologiche</b><br><span style="font-size:13px; color:var(--text-muted);">Università di Ferrara</span></div>
+                    </li>
+                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
+                        <span style="font-size: 24px;">📏</span>
+                        <div><b>Certificazione ISAK</b><br><span style="font-size:13px; color:var(--text-muted);">Antropometria</span></div>
+                    </li>
+                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
+                        <span style="font-size: 24px;">✓</span>
+                        <div><b>Ordine dei Biologi (Lombardia)</b><br><span style="font-size:13px; color:var(--text-muted);">Abilitazione & iscrizione</span></div>
+                    </li>
+                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
+                        <span style="font-size: 24px;">📚</span>
+                        <div><b>Corsi Specialistici</b><br><span style="font-size:13px; color:var(--text-muted);">Pediatria, Fertilità, Gravidanza, IBS/Low FODMAP, Ipertrofia.</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="servizi" class="section">
+            <div class="info-card">
+                <h2>I Miei Percorsi</h2>
+                <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 30px;">Scegli il percorso più adatto alle tue esigenze. Ogni piano è costruito su misura per te.</p>
+                
+                <div class="services-grid">
+                    
+                    <div class="service-box">
+                        <h3>📋 Piano con Grammature</h3>
+                        <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> controllo peso, patologie, performance sportiva.</p>
+                        <ul class="s-list">
+                            <li>Colloquio approfondito e definizione obiettivi</li>
+                            <li>Raccolta dati antropometrici completi</li>
+                            <li>Elaborazione piano alimentare personalizzato</li>
+                            <li>Invio materiali aggiuntivi e ricette</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-box">
+                        <h3>⚖️ Piano Senza Grammature</h3>
+                        <span class="s-tag b-blue">1 ora</span>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> bambini, ragazzi, famiglie, chi vuole mangiare meglio senza numeri.</p>
+                        <ul class="s-list">
+                            <li>Colloquio su routine e segnali di fame/sazietà</li>
+                            <li>Piano basato su porzioni intuitive</li>
+                            <li>Indicazioni per tutti i pasti della giornata</li>
+                            <li>Possibilità di evolvere al piano con grammature</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-box">
+                        <h3>🤝 Piano di Coppia</h3>
+                        <span class="s-tag b-green">1 ora / 1 ora e mezza</span>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> coppie conviventi o chi mangia gli stessi pasti.</p>
+                        <ul class="s-list">
+                            <li>Colloquio doppio per storia e abitudini</li>
+                            <li>Struttura alimentare settimanale unica</li>
+                            <li>Grammature individuali personalizzate</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-box">
+                        <h3>🛒 Educazione Alimentare</h3>
+                        <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> chi vuole imparare a fare la spesa e gestire i pasti in autonomia.</p>
+                        <ul class="s-list">
+                            <li>Percorso laboratoriale senza grammature</li>
+                            <li>Principi pratici della Dieta Mediterranea</li>
+                            <li>Strategie per frequenze e abbinamenti</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-box">
+                        <h3>🔄 Controllo Periodico</h3>
+                        <span class="s-tag b-blue">30 / 45 minuti</span>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> chi deve monitorare i progressi o adattare il piano.</p>
+                        <ul class="s-list">
+                            <li>Revisione settimane trascorse e sensazioni</li>
+                            <li>Aggiornamento misurazioni (se necessario)</li>
+                            <li>Strategie per superare le difficoltà</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-box">
+                        <h3>💡 Consulenze Specifiche</h3>
+                        <span class="s-tag b-green">45 minuti / 1 ora</span>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Temi:</strong> Svezzamento, Menopausa, Sport, Disturbi digestivi.</p>
+                        <ul class="s-list">
+                            <li>Incontro mirato su un tema preciso</li>
+                            <li>Strategie pratiche e subito applicabili</li>
+                            <li>Materiali aggiuntivi dedicati</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="prenota" class="section">
+            <div class="info-card">
+                <h2>Prenota un Appuntamento</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Seleziona il servizio che ti interessa e lasciami i tuoi contatti. Ti scriverò per concordare il giorno e l'ora esatta.</p>
+                
+                <div class="form-group">
+                    <label>Il tuo Nome e Cognome</label>
+                    <input type="text" id="paz-nome" placeholder="Es. Giulia Bianchi">
+                </div>
+                <div class="form-group">
+                    <label>Cellulare</label>
+                    <input type="tel" id="paz-tel" placeholder="Es. 340 1234567">
+                </div>
+                <div class="form-group">
+                    <label>Quale percorso ti interessa?</label>
+                    <select id="paz-motivo">
+                        <option value="">Seleziona un'opzione...</option>
+                        <option value="Piano con Grammature">Piano con Grammature</option>
+                        <option value="Piano Senza Grammature">Piano Senza Grammature</option>
+                        <option value="Piano di Coppia">Piano di Coppia</option>
+                        <option value="Educazione Alimentare">Educazione Alimentare</option>
+                        <option value="Controllo Periodico">Controllo Periodico</option>
+                        <option value="Consulenza Specifica">Consulenza Specifica</option>
+                        <option value="Non so / Vorrei info">Non so, vorrei un consiglio</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>In che giorno preferiresti venire?</label>
+                    <input type="date" id="paz-data">
+                </div>
+                <div class="form-group">
+                    <label>Scrivimi due righe su di te (Opzionale)</label>
+                    <textarea id="paz-note" rows="3" placeholder="Quali sono i tuoi obiettivi? Hai patologie?"></textarea>
+                </div>
+                
+                <button class="btn-submit" onclick="inviaPrenotazioneDummy()">Invia Richiesta</button>
+            </div>
+        </div>
+
+        <div id="admin" class="section info-card">
+            <h2 style="color: #e74c3c; border-bottom-color: #fadbd8;">🛡️ Dashboard Amministratore</h2>
+            <p style="font-size:14px; color:var(--text-muted);">Questa è la tua area privata. Da qui potrai gestire le richieste in arrivo dal sito.</p>
+            
+            <div style="margin-top: 25px;">
+                <h3 style="font-size: 16px;">Richieste Ricevute</h3>
+                
+                <div class="paziente-row">
+                    <div>
+                        <b style="color: var(--text-dark);">Marco Verdi</b> <br>
+                        <span style="font-size:13px; color:var(--text-muted);">📞 333 1234567 | Piano di Coppia</span>
+                    </div>
+                    <span class="status-badge st-new">Nuova</span>
+                </div>
+            </div>
+            
+            <button class="btn-submit" style="background: #e74c3c; margin-top: 20px; box-shadow:none;" onclick="alert('Presto collegheremo il database Supabase!')">Sincronizza Dati</button>
+        </div>
+
+    </main>
+
+    <script>
+        // Logica di Navigazione
+        window.apriSezione = function(id, el) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            if (el) el.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Simulazione Invio Form
+        window.inviaPrenotazioneDummy = function() {
+            const nome = document.getElementById('paz-nome').value;
+            const tel = document.getElementById('paz-tel').value;
+            if(!nome || !tel) {
+                alert("⚠️ Per favore, inserisci almeno il tuo Nome e il numero di Telefono.");
+                return;
+            }
+            alert(`✅ Richiesta inviata con successo!\n\nGrazie ${nome}, la Dott.ssa Canossa ti ricontatterà al più presto.\n(Questa è una simulazione in attesa del database)`);
+            
+            document.getElementById('paz-nome').value = '';
+            document.getElementById('paz-tel').value = '';
+            document.getElementById('paz-motivo').value = '';
+            document.getElementById('paz-data').value = '';
+            document.getElementById('paz-note').value = '';
+        };
+
+        // Accesso Segreto (3 Click)
+        let adminClicks = 0; 
+        let adminTimer;
+        
+        window.clickSegreto = function() {
+            adminClicks++; 
+            clearTimeout(adminTimer);
+            adminTimer = setTimeout(() => { adminClicks = 0; }, 1000); 
+            
+            if (adminClicks === 3) {
+                let psw = prompt("🔐 Accesso Area Privata. Inserisci la password:");
+                if (psw === "boss") {
+                    document.getElementById('btn-nav-admin').style.display = 'inline-block';
+                    apriSezione('admin', document.getElementById('btn-nav-admin'));
+                } else if (psw !== null) {
+                    alert("❌ Password errata.");
+                }
+                adminClicks = 0;
+            }
+        };
+    </script>
+</body>
+</html>
