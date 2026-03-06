@@ -163,7 +163,7 @@
                 <div class="badges-grid">
                     <span class="badge b-terra">✿ Educazione alimentare</span>
                     <span class="badge b-blue">♀ Menopausa</span>
-                    <span class="badge b-green">♥ Gravidanza</span>
+                    <span class="badge b-green">🥣 Svezzamento</span>
                     <span class="badge b-terra">✿ Percorsi di coppia o familiari</span>
                     <span class="badge b-blue">⚕ Colon irritabile</span>
                     <span class="badge b-green">♥ Nutrizione clinica</span>
@@ -279,9 +279,13 @@
                     <label>Cellulare</label>
                     <input type="tel" id="paz-tel" placeholder="Es. 340 1234567">
                 </div>
+                
                 <div class="form-group">
-                    <label>Note aggiuntive (Opzionale)</label>
-                    <textarea id="paz-note" rows="3" placeholder="Scrivi qui se hai preferenze di giorni o orari di massima, o parlami dei tuoi obiettivi..."></textarea>
+                    <label>Descrivi i tuoi obiettivi (Opzionale)</label>
+                    <textarea id="paz-note" rows="3" placeholder="Scrivi qui i tuoi obiettivi..."></textarea>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px; font-style: italic;">
+                        (es. perdita di peso, gonfiore addominale, educazione alimentare, ecc.)
+                    </div>
                 </div>
 
                 <label class="privacy-check">
@@ -502,7 +506,6 @@
             }
 
             prenotazioniFiltrate.forEach(p => {
-                // Formatta la data in cui il cliente ha compilato il modulo (created_at)
                 let dataCreazione = new Date(p.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' });
                 
                 let isNew = p.stato === 'Nuova';
@@ -512,7 +515,6 @@
                 let telWA = p.telefono.replace(/\D/g, ''); 
                 if(telWA.startsWith('3')) telWA = '39' + telWA;
                 
-                // Messaggio WhatsApp senza riferimento al giorno/ora specifico (visto che lo devono concordare)
                 let msgWA = encodeURIComponent(`Ciao ${p.nome}, sono la Dott.ssa Federica Canossa. Ti scrivo per concordare insieme il giorno e l'ora per la tua richiesta di appuntamento per il percorso: ${p.servizio}...`);
 
                 let toggleBtnText = isNew ? '✅ Segna come Gestita' : '⏪ Riporta a Da Contattare';
