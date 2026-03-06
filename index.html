@@ -74,7 +74,7 @@
         .section.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* HERO & BADGES (Home) */
+        /* HERO & BADGES */
         .hero-container {
             display: flex; flex-direction: column; align-items: center; text-align: center;
             background: var(--card-bg); padding: 40px 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
@@ -85,22 +85,15 @@
             border: 5px solid var(--terracotta-light); margin-bottom: 25px;
             box-shadow: 0 10px 25px rgba(208, 128, 94, 0.15);
         }
-        .quote {
-            font-size: 20px; font-style: italic; color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; font-weight: 300;
-        }
-        .badges-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-        }
-        .badge {
-            padding: 10px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;
-            transition: 0.2s; cursor: default;
-        }
+        .quote { font-size: 20px; font-style: italic; color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; font-weight: 300; }
+        .badges-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .badge { padding: 10px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; cursor: default; }
         .badge:hover { transform: scale(1.05); }
         .b-terra { background: var(--terracotta-light); color: var(--terracotta); }
         .b-blue { background: var(--blue-light); color: var(--blue); }
         .b-green { background: var(--green-light); color: var(--green); }
 
-        /* CARDS E LISTE */
+        /* CARDS */
         .info-card {
             background: var(--card-bg); padding: 35px; border-radius: var(--radius-lg); 
             box-shadow: var(--shadow-soft); margin-bottom: 25px; border: 1px solid var(--border-light);
@@ -111,17 +104,14 @@
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         .service-box {
             background: var(--card-bg); border: 2px solid var(--border-light); padding: 25px; 
-            border-radius: var(--radius-md); transition: 0.3s; position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
+            border-radius: var(--radius-md); transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column;
         }
         .service-box:hover { border-color: var(--terracotta); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .service-box h3 { font-size: 18px; margin: 0 0 10px 0; color: var(--text-dark); display: flex; align-items: center; gap: 10px;}
         .service-box .s-tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px; width: max-content;}
-        
         .s-list { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--text-muted); flex-grow: 1; }
         .s-list li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
         .s-list li::before { content: '✓'; color: var(--green); font-weight: bold; }
-
         .btn-service {
             background: var(--terracotta-light); color: var(--terracotta); border: 1px solid var(--terracotta-light);
             padding: 12px 15px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;
@@ -129,7 +119,7 @@
         }
         .btn-service:hover { background: var(--terracotta); color: white; border-color: var(--terracotta); box-shadow: 0 4px 10px rgba(208, 128, 94, 0.2); }
 
-        /* FORM PRENOTAZIONE */
+        /* FORM PRENOTAZIONE E MAPPA */
         .form-group { margin-bottom: 22px; text-align: left; }
         .form-group label { font-size: 13px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
         .form-group input, .form-group select, .form-group textarea { 
@@ -140,19 +130,29 @@
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
             border-color: var(--terracotta); background-color: #fff; box-shadow: 0 0 0 4px var(--terracotta-light); 
         }
-
         .btn-submit { 
             background: var(--terracotta); color: white; border: none; padding: 18px 24px; 
             border-radius: 14px; cursor: pointer; font-size: 16px; font-weight: 600; width: 100%; 
-            transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(208, 128, 94, 0.25);
+            transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(208, 128, 94, 0.25); margin-top: 10px;
         }
         .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(208, 128, 94, 0.35); }
+        .map-container iframe { width: 100%; height: 300px; border: none; border-radius: var(--radius-md); background: #eee; }
 
         /* DASHBOARD ADMIN */
-        #admin { background: #fffcfb; border: 2px dashed #e74c3c; }
+        #admin { background: #fffcfb; border: 2px dashed #e74c3c; padding: 25px; border-radius: var(--radius-lg); }
+        .admin-nav { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid var(--border-light); padding-bottom: 15px;}
+        .admin-nav button { background: transparent; border: none; font-size: 16px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 5px 10px;}
+        .admin-nav button.active { color: #e74c3c; border-bottom: 3px solid #e74c3c; }
+        
+        .admin-tab { display: none; }
+        .admin-tab.active { display: block; animation: slideUp 0.3s ease; }
+
         .paziente-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-light); background: white; border-radius: 12px; margin-bottom: 10px;}
         .status-badge { padding: 6px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
         .st-new { background: #fff3cd; color: #856404; }
+        
+        .slot-row { background: white; padding: 15px; border-radius: 12px; border: 1px solid var(--border-light); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
+        .btn-delete { background: #ffebee; color: #c62828; border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;}
     </style>
 </head>
 <body>
@@ -175,9 +175,7 @@
         <div id="home" class="section active">
             <div class="hero-container">
                 <img src="profilo.jpeg" alt="Dott.ssa Federica Canossa" class="hero-img" onerror="this.src='https://via.placeholder.com/160/F8EBE6/D0805E?text=Foto'">
-                
                 <div class="quote">"Se il cibo per te è sempre stato un problema, non vuol dire che lo debba essere per sempre."</div>
-                
                 <div class="badges-grid">
                     <span class="badge b-terra">✿ Educazione alimentare</span>
                     <span class="badge b-blue">♀ Menopausa</span>
@@ -196,7 +194,6 @@
             <div class="info-card">
                 <h2>Formazione & Specializzazioni</h2>
                 <p style="line-height: 1.7;">Sono <b>Federica Canossa, Biologa Nutrizionista</b>: aiuto a costruire un rapporto sereno e consapevole con il cibo, senza divieti né sensi di colpa, con ascolto e strategie pratiche che durano nel tempo.</p>
-                
                 <ul style="list-style: none; padding: 0; margin-top: 30px;">
                     <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
                         <span style="font-size: 24px;">🎓</span>
@@ -214,10 +211,6 @@
                         <span style="font-size: 24px;">✓</span>
                         <div><b>Ordine dei Biologi (Lombardia)</b><br><span style="font-size:13px; color:var(--text-muted);">Abilitazione & iscrizione</span></div>
                     </li>
-                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
-                        <span style="font-size: 24px;">📚</span>
-                        <div><b>Corsi Specialistici</b><br><span style="font-size:13px; color:var(--text-muted);">Pediatria, Fertilità, Gravidanza, IBS/Low FODMAP, Ipertrofia.</span></div>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -228,7 +221,6 @@
                 <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 30px;">Scegli il percorso più adatto alle tue esigenze. Ogni piano è costruito su misura per te.</p>
                 
                 <div class="services-grid">
-                    
                     <div class="service-box">
                         <h3>📋 Piano con Grammature</h3>
                         <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
@@ -237,7 +229,6 @@
                             <li>Colloquio approfondito e definizione obiettivi</li>
                             <li>Raccolta dati antropometrici completi</li>
                             <li>Elaborazione piano alimentare personalizzato</li>
-                            <li>Invio materiali aggiuntivi e ricette</li>
                         </ul>
                         <button class="btn-service" onclick="prenotaServizio('Piano con Grammature')">Prenota questo percorso</button>
                     </div>
@@ -245,9 +236,8 @@
                     <div class="service-box">
                         <h3>⚖️ Piano Senza Grammature</h3>
                         <span class="s-tag b-blue">1 ora</span>
-                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> bambini, ragazzi, famiglie, chi vuole mangiare meglio senza numeri.</p>
+                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> bambini, famiglie, chi vuole mangiare meglio senza numeri.</p>
                         <ul class="s-list">
-                            <li>Colloquio su routine e segnali di fame/sazietà</li>
                             <li>Piano basato su porzioni intuitive</li>
                             <li>Indicazioni per tutti i pasti della giornata</li>
                             <li>Possibilità di evolvere al piano con grammature</li>
@@ -266,43 +256,6 @@
                         </ul>
                         <button class="btn-service" onclick="prenotaServizio('Piano di Coppia')">Prenota questo percorso</button>
                     </div>
-
-                    <div class="service-box">
-                        <h3>🛒 Educazione Alimentare</h3>
-                        <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
-                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> chi vuole imparare a fare la spesa e gestire i pasti in autonomia.</p>
-                        <ul class="s-list">
-                            <li>Percorso laboratoriale senza grammature</li>
-                            <li>Principi pratici della Dieta Mediterranea</li>
-                            <li>Strategie per frequenze e abbinamenti</li>
-                        </ul>
-                        <button class="btn-service" onclick="prenotaServizio('Educazione Alimentare')">Prenota questo percorso</button>
-                    </div>
-
-                    <div class="service-box">
-                        <h3>🔄 Controllo Periodico</h3>
-                        <span class="s-tag b-blue">30 / 45 minuti</span>
-                        <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> chi deve monitorare i progressi o adattare il piano.</p>
-                        <ul class="s-list">
-                            <li>Revisione settimane trascorse e sensazioni</li>
-                            <li>Aggiornamento misurazioni (se necessario)</li>
-                            <li>Strategie per superare le difficoltà</li>
-                        </ul>
-                        <button class="btn-service" onclick="prenotaServizio('Controllo Periodico')">Prenota questo percorso</button>
-                    </div>
-
-                    <div class="service-box">
-                        <h3>💡 Consulenze Specifiche</h3>
-                        <span class="s-tag b-green">45 minuti / 1 ora</span>
-                        <p style="font-size: 13px; margin-top:0;"><strong>Temi:</strong> Svezzamento, Menopausa, Sport, Disturbi digestivi.</p>
-                        <ul class="s-list">
-                            <li>Incontro mirato su un tema preciso</li>
-                            <li>Strategie pratiche e subito applicabili</li>
-                            <li>Materiali aggiuntivi dedicati</li>
-                        </ul>
-                        <button class="btn-service" onclick="prenotaServizio('Consulenza Specifica')">Prenota questo percorso</button>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -310,16 +263,8 @@
         <div id="prenota" class="section">
             <div class="info-card">
                 <h2>Prenota un Appuntamento</h2>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Compila il modulo e lasciami i tuoi contatti. Ti scriverò per concordare il giorno e l'ora esatta.</p>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Scegli un giorno e un orario tra quelli disponibili. Ti ricontatterò per confermare l'appuntamento.</p>
                 
-                <div class="form-group">
-                    <label>Il tuo Nome e Cognome</label>
-                    <input type="text" id="paz-nome" placeholder="Es. Giulia Bianchi">
-                </div>
-                <div class="form-group">
-                    <label>Cellulare</label>
-                    <input type="tel" id="paz-tel" placeholder="Es. 340 1234567">
-                </div>
                 <div class="form-group">
                     <label>Quale percorso ti interessa?</label>
                     <select id="paz-motivo">
@@ -333,87 +278,190 @@
                         <option value="Non so / Vorrei info">Non so, vorrei un consiglio</option>
                     </select>
                 </div>
+                
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Scegli il Giorno</label>
+                        <select id="paz-data" onchange="aggiornaOrariMenu()">
+                            <option value="">Seleziona una data...</option>
+                            </select>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Scegli l'Ora</label>
+                        <select id="paz-ora">
+                            <option value="">---</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label>In che giorno preferiresti venire?</label>
-                    <input type="date" id="paz-data">
+                    <label>Il tuo Nome e Cognome</label>
+                    <input type="text" id="paz-nome" placeholder="Es. Giulia Bianchi">
                 </div>
                 <div class="form-group">
-                    <label>Scrivimi due righe su di te (Opzionale)</label>
-                    <textarea id="paz-note" rows="3" placeholder="Quali sono i tuoi obiettivi? Hai patologie?"></textarea>
+                    <label>Cellulare</label>
+                    <input type="tel" id="paz-tel" placeholder="Es. 340 1234567">
+                </div>
+                <div class="form-group">
+                    <label>Note aggiuntive (Opzionale)</label>
+                    <textarea id="paz-note" rows="2" placeholder="Quali sono i tuoi obiettivi?"></textarea>
                 </div>
                 
-                <button class="btn-submit" onclick="inviaPrenotazioneDummy()">Invia Richiesta</button>
+                <button class="btn-submit" onclick="inviaPrenotazioneDummy()">Invia Richiesta Prenotazione</button>
+            </div>
+
+            <div class="info-card">
+                <h2>Lo Studio</h2>
+                <p style="font-size: 15px; color: var(--text-dark); font-weight: 500;">
+                    📍 Via F.lli Bandiera 21, Poggio Rusco (MN)
+                </p>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=Via%20F.lli%20Bandiera%2021%20Poggio%20Rusco&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
 
-        <div id="admin" class="section info-card">
-            <h2 style="color: #e74c3c; border-bottom-color: #fadbd8;">🛡️ Dashboard Amministratore</h2>
-            <p style="font-size:14px; color:var(--text-muted);">Questa è la tua area privata. Da qui potrai gestire le richieste in arrivo dal sito.</p>
+        <div id="admin" class="section">
+            <h2 style="color: #e74c3c; margin-top:0;">🛡️ Area Dott.ssa Canossa</h2>
             
-            <div style="margin-top: 25px;">
-                <h3 style="font-size: 16px;">Richieste Ricevute</h3>
-                
+            <div class="admin-nav">
+                <button id="tab-btn-richieste" class="active" onclick="switchAdmin('richieste')">Inbox Pazienti</button>
+                <button id="tab-btn-calendario" onclick="switchAdmin('calendario')">Gestione Calendario</button>
+            </div>
+
+            <div id="admin-richieste" class="admin-tab active">
+                <p style="font-size:14px; color:var(--text-muted);">Richieste di appuntamento ricevute dal sito.</p>
                 <div class="paziente-row">
                     <div>
-                        <b style="color: var(--text-dark);">Marco Verdi</b> <br>
+                        <b style="color: var(--text-dark);">Marco Verdi</b> <span style="font-size: 13px; color: #e67e22; font-weight:bold;">(15 Aprile - 10:30)</span><br>
                         <span style="font-size:13px; color:var(--text-muted);">📞 333 1234567 | Piano di Coppia</span>
                     </div>
                     <span class="status-badge st-new">Nuova</span>
                 </div>
             </div>
-            
-            <button class="btn-submit" style="background: #e74c3c; margin-top: 20px; box-shadow:none;" onclick="alert('Presto collegheremo il database Supabase!')">Sincronizza Dati</button>
+
+            <div id="admin-calendario" class="admin-tab">
+                <p style="font-size:14px; color:var(--text-muted);">Aggiungi i giorni e gli orari in cui sei disponibile per ricevere in studio.</p>
+                
+                <div style="background: var(--bg-color); padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border-light);">
+                    <div class="form-group">
+                        <label>1. Scegli un Giorno</label>
+                        <input type="date" id="admin-new-date">
+                    </div>
+                    <div class="form-group">
+                        <label>2. Inserisci gli Orari (separati da virgola)</label>
+                        <input type="text" id="admin-new-times" placeholder="Es. 09:00, 11:30, 15:00, 17:30">
+                    </div>
+                    <button class="btn-submit" style="background: #27ae60; box-shadow: none;" onclick="aggiungiDisponibilitaAdmin()">➕ Salva Disponibilità</button>
+                </div>
+
+                <h3 style="font-size: 16px;">Calendario Attuale:</h3>
+                <div id="lista-disponibilita-admin">
+                    </div>
+            </div>
         </div>
 
     </main>
 
     <script>
-        // Logica di Navigazione
+        // ==========================================
+        // DATABASE MOCK (FINTO) PER ORARI
+        // ==========================================
+        // Questo oggetto salva temporaneamente le date inserite da Federica.
+        // Esempio: "2026-04-10": ["09:00", "11:30"]
+        let mockDisponibilita = {}; 
+
+        // ==========================================
+        // LOGICA DI BASE E NAVIGAZIONE
+        // ==========================================
         window.apriSezione = function(id, el) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#main-nav .tab-link').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             if (el) el.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (id === 'prenota') caricaDateMenuPaziente(); // Aggiorna i menu a tendina quando apro Prenota
         };
 
-        // Funzione per prenotare direttamente da un Servizio
         window.prenotaServizio = function(nomeServizio) {
-            // Seleziona il tab "Prenota" (l'elemento con id 'nav-prenota')
             const tabPrenota = document.getElementById('nav-prenota');
             apriSezione('prenota', tabPrenota);
-            
-            // Imposta automaticamente il menu a tendina
             const selectMotivo = document.getElementById('paz-motivo');
             if(selectMotivo) {
                 selectMotivo.value = nomeServizio;
-                
-                // Crea un piccolo effetto visivo (glow) per far capire all'utente che è stato selezionato in automatico
                 selectMotivo.style.boxShadow = "0 0 0 4px var(--terracotta-light)";
-                setTimeout(() => {
-                    selectMotivo.style.boxShadow = "none";
-                }, 1500);
+                setTimeout(() => selectMotivo.style.boxShadow = "none", 1500);
             }
         };
 
-        // Simulazione Invio Form
-        window.inviaPrenotazioneDummy = function() {
-            const nome = document.getElementById('paz-nome').value;
-            const tel = document.getElementById('paz-tel').value;
-            if(!nome || !tel) {
-                alert("⚠️ Per favore, inserisci almeno il tuo Nome e il numero di Telefono.");
+        // ==========================================
+        // GESTIONE CALENDARIO LATO PAZIENTE
+        // ==========================================
+        function caricaDateMenuPaziente() {
+            const selectData = document.getElementById('paz-data');
+            const selectOra = document.getElementById('paz-ora');
+            
+            // Svuota e resetta
+            selectData.innerHTML = '<option value="">Seleziona una data...</option>';
+            selectOra.innerHTML = '<option value="">---</option>';
+
+            // Se non ci sono date
+            if(Object.keys(mockDisponibilita).length === 0) {
+                selectData.innerHTML = '<option value="">Nessuna data inserita dalla Dott.ssa</option>';
                 return;
             }
-            alert(`✅ Richiesta inviata con successo!\n\nGrazie ${nome}, la Dott.ssa Canossa ti ricontatterà al più presto.\n(Questa è una simulazione in attesa del database)`);
+
+            // Popola le date
+            for (let data in mockDisponibilita) {
+                // Formatta la data (es. da 2026-04-15 a 15/04/2026)
+                let parts = data.split('-');
+                let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                
+                let opt = document.createElement('option');
+                opt.value = data;
+                opt.innerText = dataIta;
+                selectData.appendChild(opt);
+            }
+        }
+
+        window.aggiornaOrariMenu = function() {
+            const dataSelezionata = document.getElementById('paz-data').value;
+            const selectOra = document.getElementById('paz-ora');
             
-            document.getElementById('paz-nome').value = '';
-            document.getElementById('paz-tel').value = '';
-            document.getElementById('paz-motivo').value = '';
-            document.getElementById('paz-data').value = '';
-            document.getElementById('paz-note').value = '';
+            selectOra.innerHTML = '<option value="">---</option>';
+            if (!dataSelezionata || !mockDisponibilita[dataSelezionata]) return;
+
+            let orari = mockDisponibilita[dataSelezionata];
+            orari.forEach(ora => {
+                let opt = document.createElement('option');
+                opt.value = ora.trim();
+                opt.innerText = ora.trim();
+                selectOra.appendChild(opt);
+            });
+        }
+
+        window.inviaPrenotazioneDummy = function() {
+            const motivo = document.getElementById('paz-motivo').value;
+            const data = document.getElementById('paz-data').value;
+            const ora = document.getElementById('paz-ora').value;
+            const nome = document.getElementById('paz-nome').value;
+            const tel = document.getElementById('paz-tel').value;
+
+            if(!motivo || !data || !ora || !nome || !tel) {
+                alert("⚠️ Compila tutti i campi (Servizio, Data, Ora, Nome e Telefono) per procedere.");
+                return;
+            }
+            
+            let parts = data.split('-');
+            let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+            alert(`✅ PRENOTAZIONE SIMULATA INVIATA!\n\nPaziente: ${nome}\nServizio: ${motivo}\nData: ${dataIta} alle ${ora}\n\n(N.B. I dati spariranno aggiornando la pagina finché non colleghiamo Supabase)`);
         };
 
-        // Accesso Segreto (3 Click)
+        // ==========================================
+        // SEZIONE ADMIN SEGRETA E GESTIONE
+        // ==========================================
         let adminClicks = 0; 
         let adminTimer;
         
@@ -423,16 +471,78 @@
             adminTimer = setTimeout(() => { adminClicks = 0; }, 1000); 
             
             if (adminClicks === 3) {
-                let psw = prompt("🔐 Accesso Area Privata. Inserisci la password:");
+                let psw = prompt("🔐 Accesso Area Privata. Inserisci il PIN:");
                 if (psw === "boss") {
                     document.getElementById('btn-nav-admin').style.display = 'inline-block';
                     apriSezione('admin', document.getElementById('btn-nav-admin'));
+                    aggiornaListaAdmin(); // Carica subito le date
                 } else if (psw !== null) {
-                    alert("❌ Password errata.");
+                    alert("❌ PIN errato.");
                 }
                 adminClicks = 0;
             }
         };
+
+        window.switchAdmin = function(tabName) {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.admin-nav button').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById('admin-' + tabName).classList.add('active');
+            document.getElementById('tab-btn-' + tabName).classList.add('active');
+        };
+
+        window.aggiungiDisponibilitaAdmin = function() {
+            const dataInput = document.getElementById('admin-new-date').value;
+            const orariInput = document.getElementById('admin-new-times').value;
+
+            if(!dataInput || !orariInput) return alert("⚠️ Inserisci la data e almeno un orario!");
+
+            // Crea un array pulendo gli spazi extra
+            let orariArray = orariInput.split(',').map(o => o.trim()).filter(o => o !== "");
+            
+            // Salva nel mock db
+            mockDisponibilita[dataInput] = orariArray;
+            
+            alert("✅ Data e Orari aggiunti! I pazienti ora possono vederli.");
+            document.getElementById('admin-new-date').value = '';
+            document.getElementById('admin-new-times').value = '';
+            
+            aggiornaListaAdmin();
+        };
+
+        window.eliminaGiornoAdmin = function(dataKey) {
+            if(confirm("Vuoi eliminare tutte le disponibilità per questo giorno?")) {
+                delete mockDisponibilita[dataKey];
+                aggiornaListaAdmin();
+            }
+        }
+
+        function aggiornaListaAdmin() {
+            const container = document.getElementById('lista-disponibilita-admin');
+            container.innerHTML = "";
+
+            if(Object.keys(mockDisponibilita).length === 0) {
+                container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Nessun giorno inserito.</i>";
+                return;
+            }
+
+            for (let data in mockDisponibilita) {
+                let parts = data.split('-');
+                let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                let orari = mockDisponibilita[data].join(' | ');
+
+                let div = document.createElement('div');
+                div.className = "slot-row";
+                div.innerHTML = `
+                    <div>
+                        <b style="color: var(--terracotta);">${dataIta}</b><br>
+                        <span style="font-size: 13px; color: var(--text-muted);">Orari: ${orari}</span>
+                    </div>
+                    <button class="btn-delete" onclick="eliminaGiornoAdmin('${data}')">Elimina</button>
+                `;
+                container.appendChild(div);
+            }
+        }
     </script>
 </body>
 </html>
