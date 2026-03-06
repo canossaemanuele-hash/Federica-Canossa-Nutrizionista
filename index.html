@@ -18,8 +18,8 @@
     <meta name="application-name" content="FC Nutrizione">
     <meta name="theme-color" content="#FDFBF9">
     
-    <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23F8EBE6' rx='110' /><text x='50%25' y='53%25' font-family='Georgia, serif' font-size='240' font-weight='bold' fill='%23D0805E' text-anchor='middle' dominant-baseline='middle'>FC</text></svg>">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23F8EBE6' rx='110' /><text x='50%25' y='53%25' font-family='Georgia, serif' font-size='240' font-weight='bold' fill='%23D0805E' text-anchor='middle' dominant-baseline='middle'>FC</text></svg>">
+    <link rel="apple-touch-icon" href="icona.png">
+    <link rel="icon" type="image/png" href="icona.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -51,7 +51,6 @@
             margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased;
         }
 
-        /* HEADER E NAVIGAZIONE STICKY (Adesiva) */
         header { background: var(--card-bg); width: 100%; text-align: center; padding: 2.5rem 0 3.5rem 0; border-bottom: 3px solid var(--terracotta-light); }
         h1 { margin: 0; font-weight: 300; font-size: 28px; color: var(--text-dark); cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
         h1 strong { color: var(--terracotta); font-weight: 700; }
@@ -61,7 +60,6 @@
             background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); 
             padding: 8px; border-radius: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
             flex-wrap: wrap; z-index: 100; border: 1px solid var(--border-light);
-            /* Effetto Sticky: rimane incollata in alto quando scorri */
             position: sticky; top: 15px;
         }
         nav button { background: transparent; border: none; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; }
@@ -103,7 +101,7 @@
         /* FORM PRENOTAZIONE E MAPPA */
         .form-group { margin-bottom: 22px; text-align: left; }
         .form-group label { font-size: 13px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
-        .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="date"], .form-group select, .form-group textarea { width: 100%; padding: 15px 18px; border: 2px solid var(--border-light); border-radius: 14px; font-family: inherit; font-size: 15px; box-sizing: border-box; background-color: var(--bg-color); transition: all 0.3s ease; outline: none; color: var(--text-dark); }
+        .form-group input[type="text"], .form-group input[type="tel"], .form-group select, .form-group textarea { width: 100%; padding: 15px 18px; border: 2px solid var(--border-light); border-radius: 14px; font-family: inherit; font-size: 15px; box-sizing: border-box; background-color: var(--bg-color); transition: all 0.3s ease; outline: none; color: var(--text-dark); }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--terracotta); background-color: #fff; box-shadow: 0 0 0 4px var(--terracotta-light); }
         .btn-submit { background: var(--terracotta); color: white; border: none; padding: 18px 24px; border-radius: 14px; cursor: pointer; font-size: 16px; font-weight: 600; width: 100%; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(208, 128, 94, 0.25); margin-top: 10px; }
         .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(208, 128, 94, 0.35); }
@@ -126,11 +124,6 @@
 
         /* DASHBOARD ADMIN */
         #admin { background: #fffcfb; border: 2px dashed #e74c3c; padding: 25px; border-radius: var(--radius-lg); }
-        .admin-nav { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid var(--border-light); padding-bottom: 15px; overflow-x: auto; white-space: nowrap;}
-        .admin-nav button { background: transparent; border: none; font-size: 15px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 5px 10px;}
-        .admin-nav button.active { color: #e74c3c; border-bottom: 3px solid #e74c3c; }
-        .admin-tab { display: none; }
-        .admin-tab.active { display: block; animation: slideUp 0.3s ease; }
         
         .admin-filters { display: flex; gap: 10px; margin-bottom: 15px; }
         .btn-filter { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-light); background: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; color: var(--text-muted); }
@@ -140,14 +133,10 @@
         .status-badge { padding: 6px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
         .st-new { background: #fff3cd; color: #856404; }
         .st-done { background: #d4edda; color: #155724; }
-        .slot-row { background: white; padding: 15px; border-radius: 12px; border: 1px solid var(--border-light); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
-        .btn-delete { background: #ffebee; color: #c62828; border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px;}
         .btn-action-admin { border: 1px solid var(--border-light); background: var(--bg-color); font-size: 12px; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--text-dark); display: inline-flex; align-items: center; gap: 5px; transition: 0.2s;}
         .btn-action-admin:hover { background: #eee; }
         .btn-wa { background: #E8F5E9; color: #2E7D32; border-color: #C8E6C9; text-decoration: none; }
         .btn-wa:hover { background: #C8E6C9; }
-        .chip { background: var(--terracotta-light); color: var(--terracotta); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--terracotta); }
-        .chip button { background: none; border: none; color: var(--terracotta); cursor: pointer; font-weight: bold; font-size: 14px; padding: 0; display: flex; align-items: center; }
     </style>
 </head>
 <body>
@@ -159,9 +148,9 @@
 
     <nav id="main-nav">
         <button class="tab-link active" onclick="apriSezione('home', this)">Home</button>
-        <button class="tab-link" onclick="apriSezione('chi-sono', this)">Chi Sono</button>
+        <button class="tab-link" onclick="apriSezione('chi-sono', this)">Approccio</button>
         <button class="tab-link" onclick="apriSezione('servizi', this)">Servizi</button>
-        <button class="tab-link" id="nav-prenota" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Prenota</button>
+        <button class="tab-link" id="nav-prenota" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Richiedi Visita</button>
         
         <button id="btn-nav-admin" class="tab-link" style="display:none; color:#e74c3c;" onclick="apriSezione('admin', this)">🛡️ Admin</button>
     </nav>
@@ -186,24 +175,21 @@
 
         <div id="chi-sono" class="section">
             <div class="info-card">
-                <h2>Formazione & Specializzazioni</h2>
-                <p style="line-height: 1.7;">Sono <b>Federica Canossa, Biologa Nutrizionista</b>: aiuto a costruire un rapporto sereno e consapevole con il cibo, senza divieti né sensi di colpa, con ascolto e strategie pratiche che durano nel tempo.</p>
-                <ul style="list-style: none; padding: 0; margin-top: 30px;">
-                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
-                        <span style="font-size: 24px;">🎓</span>
-                        <div><b>Laurea Magistrale in Scienze della Nutrizione Umana</b><br><span style="font-size:13px; color:var(--text-muted);">Università di Parma</span></div>
+                <h2>Il mio approccio</h2>
+                <p style="font-size:15px; color:var(--text-dark); font-weight:600; margin-bottom:25px; margin-top:-10px;">Un metodo che unisce scienza, educazione alimentare e ascolto.</p>
+                
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px; background: var(--bg-color); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                        <div style="font-size: 18px; color: var(--terracotta); font-weight: 700; margin-bottom: 8px;">👂 Ascolto attivo</div>
+                        <div style="font-size:14px; color:var(--text-muted); line-height: 1.6;">Ogni storia è unica: partiamo dai tuoi obiettivi, abitudini e difficoltà per costruire un percorso rispettoso e realistico, senza giudizio.</div>
                     </li>
-                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
-                        <span style="font-size: 24px;">🎓</span>
-                        <div><b>Laurea Triennale in Scienze Biologiche</b><br><span style="font-size:13px; color:var(--text-muted);">Università di Ferrara</span></div>
+                    <li style="margin-bottom: 15px; background: var(--bg-color); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                        <div style="font-size: 18px; color: var(--blue); font-weight: 700; margin-bottom: 8px;">🌱 Percorsi sostenibili</div>
+                        <div style="font-size:14px; color:var(--text-muted); line-height: 1.6;">Niente diete punitive o digiuni: il cibo resta un piacere. Lavoriamo su strategie pratiche che possono durare nel tempo, integrando i cibi che ami.</div>
                     </li>
-                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
-                        <span style="font-size: 24px;">📏</span>
-                        <div><b>Certificazione ISAK</b><br><span style="font-size:13px; color:var(--text-muted);">Antropometria</span></div>
-                    </li>
-                    <li style="margin-bottom: 20px; display: flex; align-items: center; gap: 15px; background: var(--bg-color); padding: 15px; border-radius: var(--radius-md);">
-                        <span style="font-size: 24px;">✓</span>
-                        <div><b>Ordine dei Biologi (Lombardia)</b><br><span style="font-size:13px; color:var(--text-muted);">Abilitazione & iscrizione</span></div>
+                    <li style="margin-bottom: 15px; background: var(--bg-color); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                        <div style="font-size: 18px; color: var(--green); font-weight: 700; margin-bottom: 8px;">🧭 Autonomia e consapevolezza</div>
+                        <div style="font-size:14px; color:var(--text-muted); line-height: 1.6;">Ti offro una "bussola interiore" per proseguire in autonomia: incontri di monitoraggio, strumenti semplici e un rapporto sereno con il cibo.</div>
                     </li>
                 </ul>
             </div>
@@ -220,7 +206,7 @@
                         <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> controllo peso, patologie, performance sportiva.</p>
                         <ul class="s-list"><li>Colloquio approfondito e definizione obiettivi</li><li>Raccolta dati antropometrici completi</li><li>Elaborazione piano alimentare personalizzato</li></ul>
-                        <button class="btn-service" onclick="prenotaServizio('Piano con Grammature')">Prenota questo percorso</button>
+                        <button class="btn-service" onclick="prenotaServizio('Piano con Grammature')">Richiedi questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -228,7 +214,7 @@
                         <span class="s-tag b-blue">1 ora</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> bambini, famiglie, chi vuole mangiare meglio senza numeri.</p>
                         <ul class="s-list"><li>Piano basato su porzioni intuitive</li><li>Indicazioni per tutti i pasti della giornata</li><li>Possibilità di evolvere al piano con grammature</li></ul>
-                        <button class="btn-service" onclick="prenotaServizio('Piano Senza Grammature')">Prenota questo percorso</button>
+                        <button class="btn-service" onclick="prenotaServizio('Piano Senza Grammature')">Richiedi questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -236,7 +222,7 @@
                         <span class="s-tag b-green">1 ora / 1 ora e mezza</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> coppie conviventi o chi mangia gli stessi pasti.</p>
                         <ul class="s-list"><li>Colloquio doppio per storia e abitudini</li><li>Struttura alimentare settimanale unica</li><li>Grammature individuali personalizzate</li></ul>
-                        <button class="btn-service" onclick="prenotaServizio('Piano di Coppia')">Prenota questo percorso</button>
+                        <button class="btn-service" onclick="prenotaServizio('Piano di Coppia')">Richiedi questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -244,7 +230,7 @@
                         <span class="s-tag b-terra">1 ora / 1 ora e mezza</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> imparare a fare la spesa e gestire i pasti in autonomia.</p>
                         <ul class="s-list"><li>Percorso laboratoriale senza grammature</li><li>Principi pratici della Dieta Mediterranea</li><li>Strategie per frequenze e abbinamenti</li></ul>
-                        <button class="btn-service" onclick="prenotaServizio('Educazione Alimentare')">Prenota questo percorso</button>
+                        <button class="btn-service" onclick="prenotaServizio('Educazione Alimentare')">Richiedi questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -252,7 +238,7 @@
                         <span class="s-tag b-blue">30 / 45 minuti</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Adatto a:</strong> chi deve monitorare i progressi o adattare il piano.</p>
                         <ul class="s-list"><li>Revisione settimane trascorse e sensazioni</li><li>Aggiornamento misurazioni (se necessario)</li><li>Strategie per superare le difficoltà</li></ul>
-                        <button class="btn-service" onclick="prenotaServizio('Controllo Periodico')">Prenota questo percorso</button>
+                        <button class="btn-service" onclick="prenotaServizio('Controllo Periodico')">Richiedi questo percorso</button>
                     </div>
 
                     <div class="service-box">
@@ -260,7 +246,7 @@
                         <span class="s-tag b-green">45 minuti / 1 ora</span>
                         <p style="font-size: 13px; margin-top:0;"><strong>Temi:</strong> Svezzamento, Menopausa, Sport, Disturbi digestivi.</p>
                         <ul class="s-list"><li>Incontro mirato su un tema preciso</li><li>Strategie pratiche e subito applicabili</li><li>Materiali aggiuntivi dedicati</li></ul>
-                        <button class="btn-service" onclick="prenotaServizio('Consulenza Specifica')">Prenota questo percorso</button>
+                        <button class="btn-service" onclick="prenotaServizio('Consulenza Specifica')">Richiedi questo percorso</button>
                     </div>
                 </div>
             </div>
@@ -268,8 +254,8 @@
 
         <div id="prenota" class="section">
             <div class="info-card">
-                <h2>Prenota un Appuntamento</h2>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Scegli un giorno e un orario tra quelli disponibili. Ti ricontatterò per confermare l'appuntamento.</p>
+                <h2>Richiedi un Appuntamento</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Lasciami i tuoi contatti. Ti ricontatterò io il prima possibile per concordare insieme il giorno e l'orario perfetti per te.</p>
                 
                 <div class="form-group">
                     <label>Quale percorso ti interessa?</label>
@@ -285,21 +271,6 @@
                     </select>
                 </div>
                 
-                <div style="display: flex; gap: 15px;">
-                    <div class="form-group" style="flex: 2;">
-                        <label>Scegli il Giorno</label>
-                        <select id="paz-data" onchange="aggiornaOrariMenu()">
-                            <option value="">Caricamento date...</option>
-                        </select>
-                    </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label>Scegli l'Ora</label>
-                        <select id="paz-ora">
-                            <option value="">---</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <label>Il tuo Nome e Cognome</label>
                     <input type="text" id="paz-nome" placeholder="Es. Giulia Bianchi">
@@ -310,7 +281,7 @@
                 </div>
                 <div class="form-group">
                     <label>Note aggiuntive (Opzionale)</label>
-                    <textarea id="paz-note" rows="2" placeholder="Quali sono i tuoi obiettivi?"></textarea>
+                    <textarea id="paz-note" rows="3" placeholder="Scrivi qui se hai preferenze di giorni o orari di massima, o parlami dei tuoi obiettivi..."></textarea>
                 </div>
 
                 <label class="privacy-check">
@@ -318,7 +289,7 @@
                     <span>Ho letto e accetto il trattamento dei dati personali ai fini della prenotazione, in conformità con la normativa sulla privacy.</span>
                 </label>
                 
-                <button id="btn-invia-prenotazione" class="btn-submit" onclick="inviaPrenotazione()">Invia Richiesta Prenotazione</button>
+                <button id="btn-invia-prenotazione" class="btn-submit" onclick="inviaPrenotazione()">Invia Richiesta Contatto</button>
             </div>
 
             <div class="info-card">
@@ -336,41 +307,15 @@
                 <button onclick="caricaDatiSupabase()" style="background:transparent; border:none; cursor:pointer; font-size:20px;" title="Aggiorna Dati">🔄</button>
             </h2>
             
-            <div class="admin-nav">
-                <button id="tab-btn-richieste" class="active" onclick="switchAdmin('richieste')">Inbox Pazienti</button>
-                <button id="tab-btn-calendario" onclick="switchAdmin('calendario')">Gestione Calendario</button>
-            </div>
-
-            <div id="admin-richieste" class="admin-tab active">
+            <div id="admin-richieste" style="display:block;">
                 <div class="admin-filters">
-                    <button id="flt-future" class="btn-filter active" onclick="setFiltroPrenotazioni('future')">Prossime / Da Fare</button>
-                    <button id="flt-past" class="btn-filter" onclick="setFiltroPrenotazioni('past')">Storico Passato</button>
+                    <button id="flt-future" class="btn-filter active" onclick="setFiltroPrenotazioni('future')">Da Gestire / Prossime</button>
+                    <button id="flt-past" class="btn-filter" onclick="setFiltroPrenotazioni('past')">Storico (Gestite)</button>
                 </div>
 
                 <div id="lista-prenotazioni-admin">
                     <i style="color:var(--text-muted); font-size:14px;">Caricamento in corso...</i>
                 </div>
-            </div>
-
-            <div id="admin-calendario" class="admin-tab">
-                <p style="font-size:14px; color:var(--text-muted);">Seleziona una o più date e inserisci gli orari in cui sei disponibile in studio.</p>
-                
-                <div style="background: var(--bg-color); padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border-light);">
-                    <div class="form-group">
-                        <label>1. Scegli le Date (puoi sceglierne più di una)</label>
-                        <input type="date" id="admin-multi-date" onchange="aggiungiDataMultipla()">
-                        <div id="chips-date-container" style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;"></div>
-                    </div>
-                    <div class="form-group">
-                        <label>2. Inserisci gli Orari (separati da virgola)</label>
-                        <input type="text" id="admin-new-times" placeholder="Es. 09:00, 11:30, 15:00, 17:30">
-                    </div>
-                    <button class="btn-submit" style="background: #27ae60; box-shadow: none;" onclick="salvaDisponibilitaMultiple()">➕ Salva per i giorni selezionati</button>
-                </div>
-
-                <h3 style="font-size: 16px;">Calendario Attuale:</h3>
-                <div id="lista-disponibilita-admin">
-                    </div>
             </div>
         </div>
 
@@ -380,22 +325,8 @@
         <div class="modal-content">
             <div style="font-size: 50px; margin-bottom: 10px;">🎉</div>
             <h2 style="color:var(--green); margin-top:0; font-size: 22px;">Richiesta Inviata!</h2>
-            <p style="color:var(--text-muted); font-size:14px;">Grazie <b id="succ-nome" style="color:var(--text-dark);"></b>, la Dott.ssa Canossa ha ricevuto la tua richiesta e ti scriverà a breve per confermarla.</p>
+            <p style="color:var(--text-muted); font-size:15px; line-height: 1.5;">Grazie <b id="succ-nome" style="color:var(--text-dark);"></b>, ho ricevuto la tua richiesta.<br><br>Ti contatterò io stessa al più presto tramite chiamata o WhatsApp per concordare insieme il giorno e l'orario del nostro incontro.</p>
             
-            <div style="background: var(--bg-color); border: 1px solid var(--border-light); padding: 15px; border-radius: 12px; margin: 20px 0;">
-                <b style="color: var(--terracotta);">Dettagli Appuntamento:</b><br>
-                <span id="succ-dettagli" style="font-size: 14px; color: var(--text-dark); font-weight: 500;"></span>
-            </div>
-            
-            <p style="font-size:13px; font-weight:600; margin-bottom:12px;">Appuntalo sul tuo calendario:</p>
-            <div style="display:flex; flex-direction:column; gap:10px;">
-                <a id="btn-gcal" href="#" target="_blank" class="btn-service" style="margin-top:0; background:#fff; border-color:#dadce0; color:#3c4043; display:flex; align-items:center; justify-content:center; gap:8px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" width="18" alt="Google Calendar"> Google Calendar
-                </a>
-                <a id="btn-ical" href="#" download="appuntamento.ics" class="btn-service" style="margin-top:0; background:#000; border-color:#000; color:#fff; display:flex; align-items:center; justify-content:center; gap:8px;">
-                    <span style="font-size:16px;">🍎</span> Apple Calendar (iOS/Mac)
-                </a>
-            </div>
             <button class="btn-submit" style="margin-top:20px; background:#e0e0e0; color:#333; box-shadow:none; padding:12px;" onclick="chiudiModalSuccess()">Chiudi finestra</button>
         </div>
     </div>
@@ -410,7 +341,6 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3dWJzY3B5a2dwcmtybnd1a2RjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTEzODIsImV4cCI6MjA4ODM2NzM4Mn0.4zsMugqI-kveF7eMqLVgbLhGe-tLOlhqWfR2dtYQipU';
         
         const clientSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        let mockDisponibilita = {}; 
         let tuttePrenotazioni = []; 
         let filtroCorrente = 'future'; 
 
@@ -421,14 +351,10 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = `toast ${isError ? 'error' : ''}`;
-            
-            // Icona in base al tipo di messaggio
             const icon = isError ? '❌' : '✅';
             toast.innerHTML = `<span class="toast-icon">${icon}</span> <div>${message}</div>`;
-            
             container.appendChild(toast);
             
-            // Rimuove la notifica dopo 4 secondi
             setTimeout(() => {
                 toast.style.animation = 'fadeOut 0.4s ease forwards';
                 setTimeout(() => toast.remove(), 400);
@@ -436,15 +362,7 @@
         }
 
         async function caricaDatiSupabase() {
-            const { data: calData } = await clientSupabase.from('disponibilita').select('*').order('data_giorno', { ascending: true });
-            if (calData) {
-                mockDisponibilita = {};
-                calData.forEach(item => mockDisponibilita[item.data_giorno] = item.orari.split(',').map(o => o.trim()));
-                caricaDateMenuPaziente();
-                aggiornaListaAdmin();
-            }
-
-            const { data: prenData } = await clientSupabase.from('prenotazioni').select('*').order('data_prenotazione', { ascending: true });
+            const { data: prenData } = await clientSupabase.from('prenotazioni').select('*').order('created_at', { ascending: false });
             if (prenData) {
                 tuttePrenotazioni = prenData;
                 renderizzaPrenotazioniAdmin(); 
@@ -476,61 +394,15 @@
         // ==========================================
         // GESTIONE PRENOTAZIONI LATO PAZIENTE
         // ==========================================
-        function caricaDateMenuPaziente() {
-            const selectData = document.getElementById('paz-data');
-            const selectOra = document.getElementById('paz-ora');
-            
-            selectData.innerHTML = '<option value="">Seleziona una data...</option>';
-            selectOra.innerHTML = '<option value="">---</option>';
-
-            if(Object.keys(mockDisponibilita).length === 0) {
-                selectData.innerHTML = '<option value="">Nessuna data disponibile al momento</option>';
-                return;
-            }
-
-            let oggi = new Date().toISOString().split('T')[0];
-
-            for (let data in mockDisponibilita) {
-                if (data >= oggi && mockDisponibilita[data].length > 0) { 
-                    let parts = data.split('-');
-                    let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
-                    let opt = document.createElement('option');
-                    opt.value = data;
-                    opt.innerText = dataIta;
-                    selectData.appendChild(opt);
-                }
-            }
-        }
-
-        window.aggiornaOrariMenu = function() {
-            const dataSelezionata = document.getElementById('paz-data').value;
-            const selectOra = document.getElementById('paz-ora');
-            
-            selectOra.innerHTML = '<option value="">---</option>';
-            if (!dataSelezionata || !mockDisponibilita[dataSelezionata]) return;
-
-            let orari = mockDisponibilita[dataSelezionata];
-            orari.forEach(ora => {
-                if(ora.trim() !== "") {
-                    let opt = document.createElement('option');
-                    opt.value = ora;
-                    opt.innerText = ora;
-                    selectOra.appendChild(opt);
-                }
-            });
-        }
-
         window.inviaPrenotazione = async function() {
             const motivo = document.getElementById('paz-motivo').value;
-            const data = document.getElementById('paz-data').value;
-            const ora = document.getElementById('paz-ora').value;
             const nome = document.getElementById('paz-nome').value.trim();
             const tel = document.getElementById('paz-tel').value.trim();
             const note = document.getElementById('paz-note').value.trim();
             const privacy = document.getElementById('paz-privacy').checked;
 
-            if(!motivo || !data || !ora || !nome || !tel) {
-                showToast("Compila tutti i campi obbligatori per procedere.", true);
+            if(!motivo || !nome || !tel) {
+                showToast("Compila tutti i campi obbligatori (Servizio, Nome e Telefono).", true);
                 return;
             }
             if(!privacy) {
@@ -542,66 +414,32 @@
             btn.disabled = true;
             btn.innerText = "Invio in corso...";
 
+            // Inviamo "Da concordare" per non mandare in errore il database SQL esistente
             const { error } = await clientSupabase.from('prenotazioni').insert([{
-                nome: nome, telefono: tel, servizio: motivo, data_prenotazione: data, ora_prenotazione: ora, note: note
+                nome: nome, telefono: tel, servizio: motivo, data_prenotazione: "Da concordare", ora_prenotazione: "Da concordare", note: note
             }]);
 
             if (error) {
                 showToast("Errore di connessione. Riprova più tardi.", true);
             } else {
-                // Rimuove l'orario dal calendario e aggiorna db
-                let orariDelGiorno = mockDisponibilita[data];
-                if(orariDelGiorno) {
-                    let nuoviOrari = orariDelGiorno.filter(o => o.trim() !== ora.trim()).join(', ');
-                    if(nuoviOrari === "") {
-                        await clientSupabase.from('disponibilita').delete().eq('data_giorno', data);
-                    } else {
-                        await clientSupabase.from('disponibilita').update({ orari: nuoviOrari }).eq('data_giorno', data);
-                    }
-                }
-
-                mostraModalSuccess(nome, data, ora, motivo);
+                mostraModalSuccess(nome);
                 
                 document.getElementById('paz-nome').value = '';
                 document.getElementById('paz-tel').value = '';
                 document.getElementById('paz-motivo').value = '';
-                document.getElementById('paz-data').value = '';
-                document.getElementById('paz-ora').innerHTML = '<option value="">---</option>';
                 document.getElementById('paz-note').value = '';
                 document.getElementById('paz-privacy').checked = false;
             }
 
             btn.disabled = false;
-            btn.innerText = "Invia Richiesta Prenotazione";
+            btn.innerText = "Invia Richiesta Contatto";
             caricaDatiSupabase();
         };
 
-        // --- Gestione Modal Successo (Calendari) ---
-        function mostraModalSuccess(nomePaziente, dataISO, oraString, servizio) {
+        // --- Gestione Modal Successo ---
+        function mostraModalSuccess(nomePaziente) {
             document.getElementById('modal-success').style.display = 'flex';
             document.getElementById('succ-nome').innerText = nomePaziente.split(' ')[0]; 
-            
-            let parts = dataISO.split('-');
-            let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
-            document.getElementById('succ-dettagli').innerHTML = `${dataIta} alle ore ${oraString}<br><span style="font-weight:normal; font-size:13px; color:var(--text-muted);">${servizio}</span>`;
-
-            let dString = dataISO.replace(/-/g, ''); 
-            let hString = oraString.replace(':', '') + '00'; 
-            let startDT = dString + 'T' + hString;
-            
-            let hour = parseInt(oraString.split(':')[0]);
-            let min = oraString.split(':')[1];
-            let endHour = (hour + 1).toString().padStart(2, '0');
-            let endDT = dString + 'T' + endHour + min + '00';
-
-            let title = encodeURIComponent("Visita Nutrizionale - Dott.ssa Canossa");
-            let loc = encodeURIComponent("Via F.lli Bandiera 21, Poggio Rusco (MN)");
-            
-            let gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDT}/${endDT}&location=${loc}`;
-            document.getElementById('btn-gcal').href = gcalUrl;
-
-            let icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:Visita Nutrizionale - Dott.ssa Canossa\nDTSTART:${startDT}\nDTEND:${endDT}\nLOCATION:Via F.lli Bandiera 21, Poggio Rusco (MN)\nEND:VEVENT\nEND:VCALENDAR`;
-            document.getElementById('btn-ical').href = "data:text/calendar;charset=utf8," + encodeURIComponent(icsContent);
         }
 
         window.chiudiModalSuccess = function() { document.getElementById('modal-success').style.display = 'none'; }
@@ -625,78 +463,6 @@
             }
         };
 
-        window.switchAdmin = function(tabName) {
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.admin-nav button').forEach(b => b.classList.remove('active'));
-            document.getElementById('admin-' + tabName).classList.add('active');
-            document.getElementById('tab-btn-' + tabName).classList.add('active');
-        };
-
-        let dateSelezionateTemporanee = [];
-        window.aggiungiDataMultipla = function() {
-            const dateInput = document.getElementById('admin-multi-date');
-            const d = dateInput.value;
-            if(d && !dateSelezionateTemporanee.includes(d)) { dateSelezionateTemporanee.push(d); renderChipsDate(); }
-            dateInput.value = ''; 
-        };
-        window.rimuoviDataMultipla = function(d) {
-            dateSelezionateTemporanee = dateSelezionateTemporanee.filter(data => data !== d); renderChipsDate();
-        };
-        function renderChipsDate() {
-            const container = document.getElementById('chips-date-container'); container.innerHTML = '';
-            dateSelezionateTemporanee.sort().forEach(d => {
-                let parts = d.split('-'); let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
-                container.innerHTML += `<div class="chip">${dataIta} <button onclick="rimuoviDataMultipla('${d}')">✖</button></div>`;
-            });
-        }
-
-        window.salvaDisponibilitaMultiple = async function() {
-            let orariInput = document.getElementById('admin-new-times').value;
-            if(dateSelezionateTemporanee.length === 0) return showToast("Seleziona almeno un giorno dal calendario!", true);
-            if(!orariInput) return showToast("Inserisci almeno un orario!", true);
-
-            let orariPuliti = orariInput.split(',').map(o => o.trim()).filter(o => o !== "").join(', ');
-            let records = dateSelezionateTemporanee.map(data => ({ data_giorno: data, orari: orariPuliti }));
-
-            const { error } = await clientSupabase.from('disponibilita').upsert(records, { onConflict: 'data_giorno' });
-
-            if (error) showToast("Errore nel salvataggio nel database.", true);
-            else {
-                showToast(`Calendario aggiornato per ${records.length} giorn${records.length > 1 ? 'i' : 'o'}!`);
-                document.getElementById('admin-new-times').value = ''; dateSelezionateTemporanee = []; 
-                renderChipsDate(); caricaDatiSupabase();
-            }
-        };
-
-        window.eliminaGiornoAdmin = async function(dataKey) {
-            if(confirm("Vuoi eliminare tutte le disponibilità per questo giorno?")) {
-                await clientSupabase.from('disponibilita').delete().eq('data_giorno', dataKey); 
-                caricaDatiSupabase();
-                showToast("Giornata eliminata dal calendario.");
-            }
-        };
-
-        function aggiornaListaAdmin() {
-            const container = document.getElementById('lista-disponibilita-admin'); container.innerHTML = "";
-            let oggi = new Date().toISOString().split('T')[0];
-
-            if(Object.keys(mockDisponibilita).length === 0) { container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Nessun giorno inserito.</i>"; return; }
-
-            let dateOrdinate = Object.keys(mockDisponibilita).sort();
-            for (let data of dateOrdinate) {
-                let parts = data.split('-'); let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
-                let orari = mockDisponibilita[data].join(' | ');
-                let colorText = (data < oggi) ? "color: #e74c3c; text-decoration: line-through;" : "color: var(--terracotta);";
-
-                container.innerHTML += `
-                    <div class="slot-row">
-                        <div><b style="${colorText}">${dataIta}</b><br><span style="font-size: 13px; color: var(--text-muted);">Orari: ${orari}</span></div>
-                        <button class="btn-delete" onclick="eliminaGiornoAdmin('${data}')">Elimina</button>
-                    </div>
-                `;
-            }
-        }
-
         // --- Gestione Stato Prenotazioni e Filtri ---
         window.setFiltroPrenotazioni = function(filtro) {
             filtroCorrente = filtro;
@@ -710,53 +476,47 @@
             let nuovoStato = (statoAttuale === 'Nuova') ? 'Gestita' : 'Nuova';
             await clientSupabase.from('prenotazioni').update({ stato: nuovoStato }).eq('id', id);
             caricaDatiSupabase();
-            showToast(nuovoStato === 'Gestita' ? "Prenotazione segnata come gestita." : "Prenotazione riportata a Nuova.");
+            showToast(nuovoStato === 'Gestita' ? "Prenotazione spostata nello Storico." : "Prenotazione riportata a Da Gestire.");
         };
 
         window.eliminaPrenotazione = async function(id) {
-            if(confirm("Sei sicuro di voler eliminare definitivamente questa prenotazione?")) {
+            if(confirm("Sei sicuro di voler eliminare definitivamente questa richiesta?")) {
                 await clientSupabase.from('prenotazioni').delete().eq('id', id);
                 caricaDatiSupabase();
-                showToast("Prenotazione eliminata definitivamente.");
+                showToast("Richiesta eliminata definitivamente.");
             }
         };
 
         function renderizzaPrenotazioniAdmin() {
             const container = document.getElementById('lista-prenotazioni-admin');
             container.innerHTML = "";
-            let oggi = new Date().toISOString().split('T')[0];
 
             let prenotazioniFiltrate = tuttePrenotazioni.filter(p => {
-                if (filtroCorrente === 'future') return p.data_prenotazione >= oggi;
-                else return p.data_prenotazione < oggi;
+                if (filtroCorrente === 'future') return p.stato === 'Nuova';
+                else return p.stato === 'Gestita';
             });
 
-            if (filtroCorrente === 'future') {
-                prenotazioniFiltrate.sort((a, b) => a.data_prenotazione.localeCompare(b.data_prenotazione));
-            } else {
-                prenotazioniFiltrate.sort((a, b) => b.data_prenotazione.localeCompare(a.data_prenotazione));
-            }
-
             if(prenotazioniFiltrate.length === 0) {
-                container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Nessuna prenotazione in questa sezione.</i>";
+                container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Nessuna richiesta in questa sezione.</i>";
                 return;
             }
 
             prenotazioniFiltrate.forEach(p => {
-                let parts = p.data_prenotazione.split('-');
-                let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`; 
+                // Formatta la data in cui il cliente ha compilato il modulo (created_at)
+                let dataCreazione = new Date(p.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' });
                 
                 let isNew = p.stato === 'Nuova';
                 let badgeClass = isNew ? 'st-new' : 'st-done';
-                let badgeText = isNew ? 'Nuova' : 'Gestita';
+                let badgeText = isNew ? 'Da contattare' : 'Contattato / Gestita';
                 
                 let telWA = p.telefono.replace(/\D/g, ''); 
                 if(telWA.startsWith('3')) telWA = '39' + telWA;
                 
-                let msgWA = encodeURIComponent(`Ciao ${p.nome}, sono la Dott.ssa Federica Canossa. Ti scrivo per confermare la tua richiesta di appuntamento del giorno ${dataIta} alle ore ${p.ora_prenotazione}...`);
+                // Messaggio WhatsApp senza riferimento al giorno/ora specifico (visto che lo devono concordare)
+                let msgWA = encodeURIComponent(`Ciao ${p.nome}, sono la Dott.ssa Federica Canossa. Ti scrivo per concordare insieme il giorno e l'ora per la tua richiesta di appuntamento per il percorso: ${p.servizio}...`);
 
-                let toggleBtnText = isNew ? '✅ Segna come Gestita' : '⏪ Torna a Nuova';
-                let noteHtml = p.note ? `<br><span style="font-size:12px; color:#555; display:inline-block; margin-top:5px; background:#f5f5f5; padding:6px 10px; border-radius:8px;"><b>Note:</b> ${p.note}</span>` : "";
+                let toggleBtnText = isNew ? '✅ Segna come Gestita' : '⏪ Riporta a Da Contattare';
+                let noteHtml = p.note ? `<br><span style="font-size:12px; color:#555; display:inline-block; margin-top:5px; background:#f5f5f5; padding:6px 10px; border-radius:8px;"><b>Note del paziente:</b> ${p.note}</span>` : "";
 
                 let div = document.createElement('div');
                 div.className = "paziente-row";
@@ -765,12 +525,12 @@
                         <b style="color: var(--text-dark); font-size:16px;">${p.nome}</b> 
                         <span class="status-badge ${badgeClass}" style="margin-left:5px;">${badgeText}</span><br>
                         
-                        <span style="font-size: 14px; color: #D0805E; font-weight:600;">📅 ${dataIta} - Ore ${p.ora_prenotazione}</span><br>
+                        <span style="font-size: 13px; color: #D0805E; font-weight:600;">Inviata il: ${dataCreazione}</span><br>
                         <span style="font-size:13px; color:var(--text-muted);">📞 ${p.telefono} | ${p.servizio}</span>
                         ${noteHtml}
                     </div>
                     <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
-                        <a href="https://wa.me/${telWA}?text=${msgWA}" target="_blank" class="btn-action-admin btn-wa">💬 WhatsApp</a>
+                        <a href="https://wa.me/${telWA}?text=${msgWA}" target="_blank" class="btn-action-admin btn-wa">💬 Scrivi su WhatsApp</a>
                         <button onclick="toggleStatoPrenotazione(${p.id}, '${p.stato}')" class="btn-action-admin">${toggleBtnText}</button>
                         <button onclick="eliminaPrenotazione(${p.id})" class="btn-action-admin" style="color:#c62828;">🗑️ Elimina</button>
                     </div>
