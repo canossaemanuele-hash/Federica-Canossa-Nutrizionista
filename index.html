@@ -7,6 +7,11 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <meta property="og:title" content="Dott.ssa Federica Canossa - Biologa Nutrizionista">
+    <meta property="og:description" content="Aiuto a costruire un rapporto sereno e consapevole con il cibo. Scopri i miei percorsi e prenota una visita in studio.">
+    <meta property="og:image" content="profilo.jpeg">
+    <meta property="og:type" content="website">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="FC Nutrizione">
@@ -15,14 +20,12 @@
     
     <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23F8EBE6' rx='110' /><text x='50%25' y='53%25' font-family='Georgia, serif' font-size='240' font-weight='bold' fill='%23D0805E' text-anchor='middle' dominant-baseline='middle'>FC</text></svg>">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23F8EBE6' rx='110' /><text x='50%25' y='53%25' font-family='Georgia, serif' font-size='240' font-weight='bold' fill='%23D0805E' text-anchor='middle' dominant-baseline='middle'>FC</text></svg>">
-    
-    <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Dott.ssa%20Canossa%22%2C%22short_name%22%3A%22FC%20Nutrizione%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23FDFBF9%22%2C%22theme_color%22%3A%22%23D0805E%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Butf8%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%3E%3Crect%20width%3D'512'%20height%3D'512'%20fill%3D'%2523F8EBE6'%20rx%3D'110'%20%2F%3E%3Ctext%20x%3D'50%25'%20y%3D'53%25'%20font-family%3D'Georgia%2C%20serif'%20font-size%3D'240'%20font-weight%3D'bold'%20fill%3D'%2523D0805E'%20text-anchor%3D'middle'%20dominant-baseline%3D'middle'%3EFC%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================
-           1. VARIABILI E PALETTE PASTELLO
+           VARIABILI E PALETTE PASTELLO
            ========================================== */
         :root {
             --terracotta: #D0805E; 
@@ -44,50 +47,28 @@
         }
 
         body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-dark); 
-            margin: 0; padding: 0; 
-            display: flex; flex-direction: column; align-items: center; 
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-dark); 
+            margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased;
         }
 
         /* HEADER E NAVIGAZIONE */
-        header { 
-            background: var(--card-bg); 
-            width: 100%; text-align: center; 
-            padding: 2.5rem 0 3.5rem 0; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            border-bottom: 3px solid var(--terracotta-light);
-        }
-        
+        header { background: var(--card-bg); width: 100%; text-align: center; padding: 2.5rem 0 3.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border-bottom: 3px solid var(--terracotta-light); }
         h1 { margin: 0; font-weight: 300; font-size: 28px; color: var(--text-dark); cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
         h1 strong { color: var(--terracotta); font-weight: 700; }
 
-        nav { 
-            display: flex; justify-content: center; gap: 6px; margin-top: -25px; 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            padding: 8px; border-radius: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); 
-            flex-wrap: wrap; z-index: 10; border: 1px solid var(--border-light);
-        }
-        
+        nav { display: flex; justify-content: center; gap: 6px; margin-top: -25px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 8px; border-radius: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); flex-wrap: wrap; z-index: 10; border: 1px solid var(--border-light); }
         nav button { background: transparent; border: none; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; }
         nav button:hover { background: var(--bg-color); color: var(--terracotta); }
         nav button.active { background: var(--terracotta); color: white; box-shadow: 0 4px 12px rgba(208, 128, 94, 0.3); }
 
         main { width: 95%; max-width: 900px; margin: 40px auto; }
 
-        /* SEZIONI E ANIMAZIONI */
         .section { display: none; animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .section.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* HERO & BADGES */
-        .hero-container {
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            background: var(--card-bg); padding: 40px 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
-            margin-bottom: 30px; border: 1px solid var(--border-light);
-        }
+        .hero-container { display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--card-bg); padding: 40px 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); margin-bottom: 30px; border: 1px solid var(--border-light); }
         .hero-img { width: 160px; height: 160px; border-radius: 35%; object-fit: cover; border: 5px solid var(--terracotta-light); margin-bottom: 25px; box-shadow: 0 10px 25px rgba(208, 128, 94, 0.15); }
         .quote { font-size: 20px; font-style: italic; color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; font-weight: 300; }
         .badges-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
@@ -110,7 +91,7 @@
         .s-list { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--text-muted); flex-grow: 1; }
         .s-list li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
         .s-list li::before { content: '✓'; color: var(--green); font-weight: bold; }
-        .btn-service { background: var(--terracotta-light); color: var(--terracotta); border: 1px solid var(--terracotta-light); padding: 12px 15px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%; margin-top: 20px; text-align: center; }
+        .btn-service { background: var(--terracotta-light); color: var(--terracotta); border: 1px solid var(--terracotta-light); padding: 12px 15px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%; margin-top: 20px; text-align: center; text-decoration: none; display: inline-block; box-sizing: border-box; }
         .btn-service:hover { background: var(--terracotta); color: white; border-color: var(--terracotta); box-shadow: 0 4px 10px rgba(208, 128, 94, 0.2); }
 
         /* FORM PRENOTAZIONE E MAPPA */
@@ -126,6 +107,10 @@
         .privacy-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
         .privacy-check input { margin-top: 3px; accent-color: var(--terracotta); transform: scale(1.2); cursor: pointer; }
 
+        /* MODAL SUCCESS (Aggiungi a Calendario) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(58, 49, 43, 0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-content { background: white; width: 90%; max-width: 420px; padding: 35px 25px; border-radius: var(--radius-lg); box-shadow: 0 25px 50px rgba(0,0,0,0.15); text-align: center; }
+
         /* DASHBOARD ADMIN */
         #admin { background: #fffcfb; border: 2px dashed #e74c3c; padding: 25px; border-radius: var(--radius-lg); }
         .admin-nav { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid var(--border-light); padding-bottom: 15px; overflow-x: auto; white-space: nowrap;}
@@ -133,6 +118,11 @@
         .admin-nav button.active { color: #e74c3c; border-bottom: 3px solid #e74c3c; }
         .admin-tab { display: none; }
         .admin-tab.active { display: block; animation: slideUp 0.3s ease; }
+        
+        .admin-filters { display: flex; gap: 10px; margin-bottom: 15px; }
+        .btn-filter { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-light); background: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; color: var(--text-muted); }
+        .btn-filter.active { background: var(--terracotta); border-color: var(--terracotta); color: white; }
+
         .paziente-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-light); background: white; border-radius: 12px; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;}
         .status-badge { padding: 6px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
         .st-new { background: #fff3cd; color: #856404; }
@@ -143,8 +133,6 @@
         .btn-action-admin:hover { background: #eee; }
         .btn-wa { background: #E8F5E9; color: #2E7D32; border-color: #C8E6C9; text-decoration: none; }
         .btn-wa:hover { background: #C8E6C9; }
-
-        /* Date Multiple Chips */
         .chip { background: var(--terracotta-light); color: var(--terracotta); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--terracotta); }
         .chip button { background: none; border: none; color: var(--terracotta); cursor: pointer; font-weight: bold; font-size: 14px; padding: 0; display: flex; align-items: center; }
     </style>
@@ -161,7 +149,6 @@
         <button class="tab-link" onclick="apriSezione('chi-sono', this)">Chi Sono</button>
         <button class="tab-link" onclick="apriSezione('servizi', this)">Servizi</button>
         <button class="tab-link" id="nav-prenota" onclick="apriSezione('prenota', this)" style="color: var(--terracotta);">📅 Prenota</button>
-        
         <button id="btn-nav-admin" class="tab-link" style="display:none; color:#e74c3c;" onclick="apriSezione('admin', this)">🛡️ Admin</button>
     </nav>
 
@@ -341,7 +328,12 @@
             </div>
 
             <div id="admin-richieste" class="admin-tab active">
-                <p style="font-size:14px; color:var(--text-muted);">Richieste di appuntamento ricevute dal sito.</p>
+                
+                <div class="admin-filters">
+                    <button id="flt-future" class="btn-filter active" onclick="setFiltroPrenotazioni('future')">Prossime / Da Fare</button>
+                    <button id="flt-past" class="btn-filter" onclick="setFiltroPrenotazioni('past')">Storico Passato</button>
+                </div>
+
                 <div id="lista-prenotazioni-admin">
                     <i style="color:var(--text-muted); font-size:14px;">Caricamento in corso...</i>
                 </div>
@@ -371,15 +363,41 @@
 
     </main>
 
+    <div id="modal-success" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <div style="font-size: 50px; margin-bottom: 10px;">🎉</div>
+            <h2 style="color:var(--green); margin-top:0; font-size: 22px;">Richiesta Inviata!</h2>
+            <p style="color:var(--text-muted); font-size:14px;">Grazie <b id="succ-nome" style="color:var(--text-dark);"></b>, la Dott.ssa Canossa ha ricevuto la tua richiesta e ti scriverà a breve per confermarla.</p>
+            
+            <div style="background: var(--bg-color); border: 1px solid var(--border-light); padding: 15px; border-radius: 12px; margin: 20px 0;">
+                <b style="color: var(--terracotta);">Dettagli Appuntamento:</b><br>
+                <span id="succ-dettagli" style="font-size: 14px; color: var(--text-dark); font-weight: 500;"></span>
+            </div>
+            
+            <p style="font-size:13px; font-weight:600; margin-bottom:12px;">Appuntalo sul tuo calendario:</p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <a id="btn-gcal" href="#" target="_blank" class="btn-service" style="margin-top:0; background:#fff; border-color:#dadce0; color:#3c4043; display:flex; align-items:center; justify-content:center; gap:8px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" width="18"> Google Calendar
+                </a>
+                <a id="btn-ical" href="#" download="appuntamento.ics" class="btn-service" style="margin-top:0; background:#000; border-color:#000; color:#fff; display:flex; align-items:center; justify-content:center; gap:8px;">
+                    <span style="font-size:16px;">🍎</span> Apple Calendar (iOS/Mac)
+                </a>
+            </div>
+            <button class="btn-submit" style="margin-top:20px; background:#e0e0e0; color:#333; box-shadow:none; padding:12px;" onclick="chiudiModalSuccess()">Chiudi finestra</button>
+        </div>
+    </div>
+
     <script>
         // ==========================================
-        // CONFIGURAZIONE SUPABASE
+        // CONFIGURAZIONE SUPABASE E VARIABILI GLOBALI
         // ==========================================
         const SUPABASE_URL = 'https://zwubscpykgprkrnwukdc.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3dWJzY3B5a2dwcmtybnd1a2RjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTEzODIsImV4cCI6MjA4ODM2NzM4Mn0.4zsMugqI-kveF7eMqLVgbLhGe-tLOlhqWfR2dtYQipU';
         
         const clientSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         let mockDisponibilita = {}; 
+        let tuttePrenotazioni = []; // Per gestire i filtri Admin
+        let filtroCorrente = 'future'; // Stato iniziale filtro
 
         window.onload = function() { caricaDatiSupabase(); };
 
@@ -392,8 +410,11 @@
                 aggiornaListaAdmin();
             }
 
-            const { data: prenData } = await clientSupabase.from('prenotazioni').select('*').order('created_at', { ascending: false });
-            if (prenData) renderizzaPrenotazioniAdmin(prenData);
+            const { data: prenData } = await clientSupabase.from('prenotazioni').select('*').order('data_prenotazione', { ascending: true });
+            if (prenData) {
+                tuttePrenotazioni = prenData;
+                renderizzaPrenotazioniAdmin(); // Renderizza in base al filtro
+            }
         }
 
         // ==========================================
@@ -436,7 +457,7 @@
             let oggi = new Date().toISOString().split('T')[0];
 
             for (let data in mockDisponibilita) {
-                if (data >= oggi && mockDisponibilita[data].length > 0) { // Mostra solo se ci sono orari
+                if (data >= oggi && mockDisponibilita[data].length > 0) { 
                     let parts = data.split('-');
                     let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
                     let opt = document.createElement('option');
@@ -487,7 +508,6 @@
             btn.disabled = true;
             btn.innerText = "Invio in corso...";
 
-            // 1. Inserisce la prenotazione
             const { error } = await clientSupabase.from('prenotazioni').insert([{
                 nome: nome, telefono: tel, servizio: motivo, data_prenotazione: data, ora_prenotazione: ora, note: note
             }]);
@@ -496,22 +516,19 @@
                 alert("❌ Errore durante l'invio. Riprova più tardi.");
             } else {
                 
-                // 2. Rimuove l'orario prenotato dal calendario
+                // Rimuove l'orario dal calendario e aggiorna db
                 let orariDelGiorno = mockDisponibilita[data];
                 if(orariDelGiorno) {
-                    // Filtra via l'orario appena prenotato
                     let nuoviOrari = orariDelGiorno.filter(o => o.trim() !== ora.trim()).join(', ');
-                    
                     if(nuoviOrari === "") {
-                        // Se era l'ultimo orario, elimina l'intero giorno
                         await clientSupabase.from('disponibilita').delete().eq('data_giorno', data);
                     } else {
-                        // Altrimenti aggiorna la stringa
                         await clientSupabase.from('disponibilita').update({ orari: nuoviOrari }).eq('data_giorno', data);
                     }
                 }
 
-                alert(`✅ Richiesta inviata con successo!\n\nGrazie ${nome}, la Dott.ssa Canossa ti ricontatterà al più presto per confermare l'appuntamento.`);
+                // MOSTRA IL BELLISSIMO POPUP CON I BOTTONI CALENDARIO
+                mostraModalSuccess(nome, data, ora, motivo);
                 
                 // Reset form
                 document.getElementById('paz-nome').value = '';
@@ -525,11 +542,47 @@
 
             btn.disabled = false;
             btn.innerText = "Invia Richiesta Prenotazione";
-            caricaDatiSupabase(); // Ricarica i dati (che ora non avranno più quell'orario!)
+            caricaDatiSupabase();
         };
 
+        // --- Gestione Modal Successo (Calendari) ---
+        function mostraModalSuccess(nomePaziente, dataISO, oraString, servizio) {
+            document.getElementById('modal-success').style.display = 'flex';
+            document.getElementById('succ-nome').innerText = nomePaziente.split(' ')[0]; // Solo il nome
+            
+            let parts = dataISO.split('-');
+            let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            document.getElementById('succ-dettagli').innerHTML = `${dataIta} alle ore ${oraString}<br><span style="font-weight:normal; font-size:13px; color:var(--text-muted);">${servizio}</span>`;
+
+            // Creazione Formati Data per Calendari
+            let dString = dataISO.replace(/-/g, ''); // "20260315"
+            let hString = oraString.replace(':', '') + '00'; // "103000"
+            let startDT = dString + 'T' + hString;
+            
+            // Aggiungiamo di base 1 ora per la durata fittizia sul calendario
+            let hour = parseInt(oraString.split(':')[0]);
+            let min = oraString.split(':')[1];
+            let endHour = (hour + 1).toString().padStart(2, '0');
+            let endDT = dString + 'T' + endHour + min + '00';
+
+            let title = encodeURIComponent("Visita Nutrizionale - Dott.ssa Canossa");
+            let loc = encodeURIComponent("Via F.lli Bandiera 21, Poggio Rusco (MN)");
+            
+            // Link Google Calendar
+            let gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDT}/${endDT}&location=${loc}`;
+            document.getElementById('btn-gcal').href = gcalUrl;
+
+            // Link Apple Calendar (.ics)
+            let icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:Visita Nutrizionale - Dott.ssa Canossa\nDTSTART:${startDT}\nDTEND:${endDT}\nLOCATION:Via F.lli Bandiera 21, Poggio Rusco (MN)\nEND:VEVENT\nEND:VCALENDAR`;
+            document.getElementById('btn-ical').href = "data:text/calendar;charset=utf8," + encodeURIComponent(icsContent);
+        }
+
+        window.chiudiModalSuccess = function() {
+            document.getElementById('modal-success').style.display = 'none';
+        }
+
         // ==========================================
-        // AREA ADMIN SEGRETA (Date Multiple & WhatsApp)
+        // AREA ADMIN SEGRETA
         // ==========================================
         let adminClicks = 0; let adminTimer;
         
@@ -555,99 +608,77 @@
 
         // --- Gestione Date Multiple ---
         let dateSelezionateTemporanee = [];
-        
         window.aggiungiDataMultipla = function() {
             const dateInput = document.getElementById('admin-multi-date');
             const d = dateInput.value;
-            if(d && !dateSelezionateTemporanee.includes(d)) {
-                dateSelezionateTemporanee.push(d);
-                renderChipsDate();
-            }
+            if(d && !dateSelezionateTemporanee.includes(d)) { dateSelezionateTemporanee.push(d); renderChipsDate(); }
             dateInput.value = ''; 
         };
-
         window.rimuoviDataMultipla = function(d) {
-            dateSelezionateTemporanee = dateSelezionateTemporanee.filter(data => data !== d);
-            renderChipsDate();
+            dateSelezionateTemporanee = dateSelezionateTemporanee.filter(data => data !== d); renderChipsDate();
         };
-
         function renderChipsDate() {
-            const container = document.getElementById('chips-date-container');
-            container.innerHTML = '';
+            const container = document.getElementById('chips-date-container'); container.innerHTML = '';
             dateSelezionateTemporanee.sort().forEach(d => {
-                let parts = d.split('-');
-                let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                let parts = d.split('-'); let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
                 container.innerHTML += `<div class="chip">${dataIta} <button onclick="rimuoviDataMultipla('${d}')">✖</button></div>`;
             });
         }
 
         window.salvaDisponibilitaMultiple = async function() {
             let orariInput = document.getElementById('admin-new-times').value;
-
             if(dateSelezionateTemporanee.length === 0) return alert("⚠️ Seleziona almeno un giorno dal calendario!");
             if(!orariInput) return alert("⚠️ Inserisci almeno un orario!");
 
             let orariPuliti = orariInput.split(',').map(o => o.trim()).filter(o => o !== "").join(', ');
-
-            let records = dateSelezionateTemporanee.map(data => ({
-                data_giorno: data,
-                orari: orariPuliti
-            }));
+            let records = dateSelezionateTemporanee.map(data => ({ data_giorno: data, orari: orariPuliti }));
 
             const { error } = await clientSupabase.from('disponibilita').upsert(records, { onConflict: 'data_giorno' });
 
-            if (error) {
-                alert("Errore nel salvataggio.");
-                console.error(error);
-            } else {
+            if (error) alert("Errore nel salvataggio.");
+            else {
                 alert(`✅ Calendario aggiornato per ${records.length} giorn${records.length > 1 ? 'i' : 'o'}!`);
-                document.getElementById('admin-new-times').value = '';
-                dateSelezionateTemporanee = []; 
-                renderChipsDate();
-                caricaDatiSupabase();
+                document.getElementById('admin-new-times').value = ''; dateSelezionateTemporanee = []; 
+                renderChipsDate(); caricaDatiSupabase();
             }
         };
 
         window.eliminaGiornoAdmin = async function(dataKey) {
             if(confirm("Vuoi eliminare tutte le disponibilità per questo giorno?")) {
-                await clientSupabase.from('disponibilita').delete().eq('data_giorno', dataKey);
-                caricaDatiSupabase();
+                await clientSupabase.from('disponibilita').delete().eq('data_giorno', dataKey); caricaDatiSupabase();
             }
         };
 
         function aggiornaListaAdmin() {
-            const container = document.getElementById('lista-disponibilita-admin');
-            container.innerHTML = "";
+            const container = document.getElementById('lista-disponibilita-admin'); container.innerHTML = "";
             let oggi = new Date().toISOString().split('T')[0];
 
-            if(Object.keys(mockDisponibilita).length === 0) {
-                container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Nessun giorno inserito.</i>";
-                return;
-            }
+            if(Object.keys(mockDisponibilita).length === 0) { container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Nessun giorno inserito.</i>"; return; }
 
             let dateOrdinate = Object.keys(mockDisponibilita).sort();
-
             for (let data of dateOrdinate) {
-                let parts = data.split('-');
-                let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                let parts = data.split('-'); let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`;
                 let orari = mockDisponibilita[data].join(' | ');
-                
                 let colorText = (data < oggi) ? "color: #e74c3c; text-decoration: line-through;" : "color: var(--terracotta);";
 
-                let div = document.createElement('div');
-                div.className = "slot-row";
-                div.innerHTML = `
-                    <div>
-                        <b style="${colorText}">${dataIta}</b><br>
-                        <span style="font-size: 13px; color: var(--text-muted);">Orari: ${orari}</span>
+                container.innerHTML += `
+                    <div class="slot-row">
+                        <div><b style="${colorText}">${dataIta}</b><br><span style="font-size: 13px; color: var(--text-muted);">Orari: ${orari}</span></div>
+                        <button class="btn-delete" onclick="eliminaGiornoAdmin('${data}')">Elimina</button>
                     </div>
-                    <button class="btn-delete" onclick="eliminaGiornoAdmin('${data}')">Elimina</button>
                 `;
-                container.appendChild(div);
             }
         }
 
-        // --- Gestione Stato Prenotazioni ---
+        // --- Gestione Stato Prenotazioni e Filtri ---
+        window.setFiltroPrenotazioni = function(filtro) {
+            filtroCorrente = filtro;
+            document.getElementById('flt-future').classList.remove('active');
+            document.getElementById('flt-past').classList.remove('active');
+            document.getElementById('flt-' + filtro).classList.add('active');
+            renderizzaPrenotazioniAdmin();
+        };
+
         window.toggleStatoPrenotazione = async function(id, statoAttuale) {
             let nuovoStato = (statoAttuale === 'Nuova') ? 'Gestita' : 'Nuova';
             await clientSupabase.from('prenotazioni').update({ stato: nuovoStato }).eq('id', id);
@@ -661,16 +692,31 @@
             }
         };
 
-        function renderizzaPrenotazioniAdmin(prenotazioni) {
+        function renderizzaPrenotazioniAdmin() {
             const container = document.getElementById('lista-prenotazioni-admin');
             container.innerHTML = "";
+            
+            let oggi = new Date().toISOString().split('T')[0];
 
-            if(prenotazioni.length === 0) {
-                container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Ancora nessuna prenotazione ricevuta.</i>";
+            // Filtriamo l'array principale in base al bottone cliccato
+            let prenotazioniFiltrate = tuttePrenotazioni.filter(p => {
+                if (filtroCorrente === 'future') return p.data_prenotazione >= oggi;
+                else return p.data_prenotazione < oggi;
+            });
+
+            // Se future, ordina per data crescente. Se passato, ordina decrescente.
+            if (filtroCorrente === 'future') {
+                prenotazioniFiltrate.sort((a, b) => a.data_prenotazione.localeCompare(b.data_prenotazione));
+            } else {
+                prenotazioniFiltrate.sort((a, b) => b.data_prenotazione.localeCompare(a.data_prenotazione));
+            }
+
+            if(prenotazioniFiltrate.length === 0) {
+                container.innerHTML = "<i style='color: #7A6F68; font-size: 13px;'>Nessuna prenotazione in questa sezione.</i>";
                 return;
             }
 
-            prenotazioni.forEach(p => {
+            prenotazioniFiltrate.forEach(p => {
                 let parts = p.data_prenotazione.split('-');
                 let dataIta = `${parts[2]}/${parts[1]}/${parts[0]}`; 
                 
@@ -678,15 +724,12 @@
                 let badgeClass = isNew ? 'st-new' : 'st-done';
                 let badgeText = isNew ? 'Nuova' : 'Gestita';
                 
-                // Formattazione per WhatsApp: rimuove spazi dal numero. Se non ha prefisso, aggiunge 39.
                 let telWA = p.telefono.replace(/\D/g, ''); 
                 if(telWA.startsWith('3')) telWA = '39' + telWA;
                 
-                // NUOVO MESSAGGIO IN PRIMA PERSONA
                 let msgWA = encodeURIComponent(`Ciao ${p.nome}, sono la Dott.ssa Federica Canossa. Ti scrivo per confermare la tua richiesta di appuntamento del giorno ${dataIta} alle ore ${p.ora_prenotazione}...`);
 
                 let toggleBtnText = isNew ? '✅ Segna come Gestita' : '⏪ Torna a Nuova';
-                
                 let noteHtml = p.note ? `<br><span style="font-size:12px; color:#555; display:inline-block; margin-top:5px; background:#f5f5f5; padding:6px 10px; border-radius:8px;"><b>Note:</b> ${p.note}</span>` : "";
 
                 let div = document.createElement('div');
@@ -703,7 +746,7 @@
                     <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
                         <a href="https://wa.me/${telWA}?text=${msgWA}" target="_blank" class="btn-action-admin btn-wa">💬 WhatsApp</a>
                         <button onclick="toggleStatoPrenotazione(${p.id}, '${p.stato}')" class="btn-action-admin">${toggleBtnText}</button>
-                        <button onclick="eliminaPrenotazione(${p.id})" class="btn-action-admin" style="color:#c62828;">🗑️ Elimina Definitivamente</button>
+                        <button onclick="eliminaPrenotazione(${p.id})" class="btn-action-admin" style="color:#c62828;">🗑️ Elimina</button>
                     </div>
                 `;
                 container.appendChild(div);
